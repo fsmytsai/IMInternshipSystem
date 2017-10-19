@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_StudentWorkSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_WorkName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_WorkYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_WorkLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_Delete"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/delete" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_StudentWorkUnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et_WorkName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edittextback"
+            android:hint="作品名稱"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_WorkDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/edittextback"
+            android:focusable="false"
+            android:hint="日期"
+            android:padding="10dp"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_WorkLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittextback"
+            android:hint="作品連結"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_Save"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/save" />
+    </LinearLayout>
+
+</LinearLayout>

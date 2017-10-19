@@ -1,0 +1,227 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tw.edu.nutc.iminternshipsystem.EditCompanyFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <include layout="@layout/top_section" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/iv_MImg"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/defaultmimg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="公司名稱"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyName"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="行業類型"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyType"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="公司地址"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="text" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="傳真號碼"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyFax"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="員工人數"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyEmpolyeeNum"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="電話號碼"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/et_CompanyTel"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:drawableBottom="@drawable/line"
+                        android:drawablePadding="5dp"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_CompanyIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edittextback"
+                    android:gravity="top"
+                    android:hint="請輸入公司介紹"
+                    android:padding="8dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/iv_Save"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="30dp"
+            android:background="@color/colorTransparent"
+            app:srcCompat="@drawable/saveall" />
+    </android.support.design.widget.CoordinatorLayout>
+
+</FrameLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tw.edu.nutc.iminternshipsystem">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/internlogo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="tw.edu.nutc.iminternshipsystem.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="tw.edu.nutc.iminternshipsystem.EditJobActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="tw.edu.nutc.iminternshipsystem.CompanyDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.JournalActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.AnnDetailActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.VisitRecordActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.AddVisitRecordActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.EditVisitCompanyActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.EditVisitStudentActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.MyStudentResumeActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.MailDetailActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.AboutUsActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.MailActivity" />
+        <activity android:name="tw.edu.nutc.iminternshipsystem.InviteInterviewActivity"></activity>
+    </application>
+
+</manifest>

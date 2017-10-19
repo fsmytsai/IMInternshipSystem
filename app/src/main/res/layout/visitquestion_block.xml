@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tv_Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.您感覺實習員對實習機構給予的實習訓練與輔導，是否落實而滿意?"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:id="@+id/rg_AnsType0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_01"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="非常滿意"-->
+        <!--android:textSize="18sp" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_02"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="滿意"-->
+        <!--android:textSize="18sp" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_03"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="普通"-->
+        <!--android:textSize="18sp" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_04"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="不滿意"-->
+        <!--android:textSize="18sp" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/rb_05"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="非常不滿意"-->
+        <!--android:textSize="18sp" />-->
+        <!--</LinearLayout>-->
+
+        <RadioButton
+            android:id="@+id/rb_00"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="非常滿意"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_01"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="-32dip"
+            android:text="滿意"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_02"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="210dip"
+            android:layout_marginTop="-32dip"
+            android:text="普通"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_03"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="不滿意"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_04"
+            android:layout_width="140dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="-32dp"
+            android:text="非常不滿意"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/rg_AnsType1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="是"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="否"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_MyStudent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/atv_JobDuty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:visibility="gone"
+        autofit:minTextSize="10sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_StudentImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/defaultmimg"
+        app:civ_border_color="@color/colorStudentRed"
+        app:civ_border_width="4dp" />
+
+    <TextView
+        android:id="@+id/tv_StudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="遊客"
+        android:textColor="@android:color/black"
+        android:textSize="28sp" />
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:onClick="PassInterview"
+        android:padding="10dp"
+        android:text="通過"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:onClick="FailedInterview"
+        android:padding="10dp"
+        android:text="未通過"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+</LinearLayout>
