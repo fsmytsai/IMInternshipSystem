@@ -182,7 +182,7 @@
                         android:layout_height="180dp"
                         android:background="@drawable/header"
                         android:gravity="center_vertical"
-                        android:onClick="GoResume"
+                        android:onClick="GoResetPassword"
                         android:orientation="horizontal"
                         android:padding="5dp">
 

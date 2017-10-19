@@ -1,9 +1,11 @@
 package tw.edu.nutc.iminternshipsystem;
 
 
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +75,12 @@ public class LoginFragment extends MySharedFragment {
                 Login();
             }
         });
+        view.findViewById(R.id.tv_ForgetPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ForgetPassword();
+            }
+        });
     }
 
 
@@ -117,6 +125,109 @@ public class LoginFragment extends MySharedFragment {
                             SharedService.ShowTextToast("登入成功", mainActivity);
                         } else {
                             et_Password.setText("");
+                            SharedService.HandleError(StatusCode, ResMsg, mainActivity);
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void ForgetPassword() {
+        account = et_Account.getText().toString();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("account", account)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(getString(R.string.BackEndPath) + "api/forgetPassword")
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedService.ShowTextToast("請檢察網路連線", mainActivity);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final int StatusCode = response.code();
+                final String ResMsg = response.body().string();
+
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (StatusCode == 200) {
+                            SharedService.ShowTextToast("請至信箱收信", mainActivity);
+                            View view = LayoutInflater.from(mainActivity).inflate(R.layout.forget_password_block, null, false);
+                            final EditText et_Token = (EditText) view.findViewById(R.id.et_Token);
+                            final EditText et_NewPassword = (EditText) view.findViewById(R.id.et_NewPassword);
+                            final EditText et_NewPasswordCheck = (EditText) view.findViewById(R.id.et_NewPasswordCheck);
+
+                            new AlertDialog.Builder(mainActivity)
+                                    .setView(view)
+                                    .setPositiveButton("確定",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    ResetPassword(et_Token.getText().toString(),
+                                                            et_NewPassword.getText().toString(),
+                                                            et_NewPasswordCheck.getText().toString());
+                                                }
+                                            })
+                                    .setNegativeButton("取消", null)
+                                    .show();
+                        } else {
+                            SharedService.HandleError(StatusCode, ResMsg, mainActivity);
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void ResetPassword(String Token, String NewPassword, String NewPasswordCheck) {
+        RequestBody formBody = new FormBody.Builder()
+                .add("token", Token)
+                .add("password", NewPassword)
+                .add("conf_pass", NewPasswordCheck)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(getString(R.string.BackEndPath) + "api/resetPassword")
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedService.ShowTextToast("請檢察網路連線", mainActivity);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final int StatusCode = response.code();
+                final String ResMsg = response.body().string();
+
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (StatusCode == 200) {
+                            SharedService.ShowTextToast("修改成功", mainActivity);
+                        } else {
                             SharedService.HandleError(StatusCode, ResMsg, mainActivity);
                         }
                     }

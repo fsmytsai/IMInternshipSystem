@@ -1179,6 +1179,12 @@ public class MainActivity extends MySharedActivity {
         }
     }
 
+    public void GoResetPassword(View v){
+        drawer.closeDrawer(GravityCompat.START);
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
+        startActivity(intent);
+    }
+
     public void GoAboutUs(View v) {
         drawer.closeDrawer(GravityCompat.START);
         Intent intent = new Intent(this, AboutUsActivity.class);

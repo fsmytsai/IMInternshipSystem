@@ -8,6 +8,7 @@ import java.util.List;
 
 public class JournalView {
     public List<Journal> journalList;
+    public Review reviews;
 
     public class Journal{
         public int journalID;
@@ -29,5 +30,15 @@ public class JournalView {
         public String comName;
         public String teaName;
         public String passDeadLine;
+    }
+
+    public class Review{
+        public int reId;
+        public int SCid;
+        public boolean reRead;
+        public String reContent;
+        public String googleForm;
+        public String created_at;
+        public String updated_at;
     }
 }

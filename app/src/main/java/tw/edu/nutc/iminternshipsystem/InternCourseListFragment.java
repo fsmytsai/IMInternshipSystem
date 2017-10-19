@@ -233,6 +233,17 @@ public class InternCourseListFragment extends MySharedFragment {
                     });
                     holder.ll_JournalList.addView(ll_JournalBlock);
                 }
+
+                LinearLayout ll_JournalBlock = GetJournalBlock(-1, journalViewArray[position].reviews.reContent != null, journalViewArray[position].reviews.reRead);
+                ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
+                        intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
+                        startActivity(intent);
+                    }
+                });
+                holder.ll_JournalList.addView(ll_JournalBlock);
             } else {
                 holder.ll_JournalList.setVisibility(View.GONE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.down);
@@ -271,6 +282,18 @@ public class InternCourseListFragment extends MySharedFragment {
                                 });
                                 holder.ll_JournalList.addView(ll_JournalBlock);
                             }
+
+                            LinearLayout ll_JournalBlock = GetJournalBlock(-1, journalViewArray[position].reviews.reContent != null, journalViewArray[position].reviews.reRead);
+                            ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
+                                    intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
+                                    startActivity(intent);
+                                }
+                            });
+                            holder.ll_JournalList.addView(ll_JournalBlock);
+
                             holder.iv_UpAndDown.setImageResource(R.drawable.up);
                             holder.ll_JournalList.setVisibility(View.VISIBLE);
                             holder.ll_JournalList.animate()
@@ -372,6 +395,18 @@ public class InternCourseListFragment extends MySharedFragment {
                                 });
                                 ll_JournalList.addView(ll_JournalBlock);
                             }
+
+                            LinearLayout ll_JournalBlock = GetJournalBlock(-1, journalViewArray[Position].reviews.reContent != null, journalViewArray[Position].reviews.reRead);
+                            ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
+                                    intent.putExtra("Review", new Gson().toJson(journalViewArray[Position].reviews));
+                                    startActivity(intent);
+                                }
+                            });
+                            ll_JournalList.addView(ll_JournalBlock);
+
                             internCourseView.intern_list.get(Position).IsFill = true;
                             iv_UpAndDown.setVisibility(View.VISIBLE);
                             pb_Loading.setVisibility(View.GONE);
@@ -399,7 +434,11 @@ public class InternCourseListFragment extends MySharedFragment {
         LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams2.weight = 1;
         TextView tv_JournalNum = new TextView(mainActivity);
-        tv_JournalNum.setText("第" + JournalNum + "份週誌");
+        if (JournalNum != -1)
+            tv_JournalNum.setText("第" + JournalNum + "份週誌");
+        else
+            tv_JournalNum.setText("實習總心得");
+
         tv_JournalNum.setTextColor(ContextCompat.getColor(mainActivity, android.R.color.black));
         tv_JournalNum.setTextSize(22f);
         tv_JournalNum.setLayoutParams(layoutParams2);
