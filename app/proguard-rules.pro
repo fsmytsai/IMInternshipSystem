@@ -68,3 +68,4 @@
 -dontwarn org.junit.**
 
 -keep public class ViewModel.** { *; }
+-keep class com.google.vr.** { *; }
