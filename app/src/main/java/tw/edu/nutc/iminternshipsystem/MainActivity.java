@@ -161,6 +161,14 @@ public class MainActivity extends MySharedActivity {
                     public void run() {
                         if (StatusCode == 200) {
                             SharedService.identityView = new Gson().fromJson(ResMsg, IdentityView.class);
+
+                            if (SharedService.identityView.u_status == 3) {
+                                //系辦
+                                SharedService.ShowTextToast("系辦請使用網頁版!", MainActivity.this);
+                                finish();
+                                return;
+                            }
+
                             SetColor();
                             contentFragmentList = new ArrayList<>();
                             getSupportFragmentManager()
@@ -1179,7 +1187,7 @@ public class MainActivity extends MySharedActivity {
         }
     }
 
-    public void GoResetPassword(View v){
+    public void GoResetPassword(View v) {
         drawer.closeDrawer(GravityCompat.START);
         Intent intent = new Intent(this, ResetPasswordActivity.class);
         startActivity(intent);

@@ -91,6 +91,14 @@ public class EditTeacherPicFragment extends MySharedFragment {
                 }
             }
         });
+
+        view.findViewById(R.id.bt_ResetPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mainActivity, ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
