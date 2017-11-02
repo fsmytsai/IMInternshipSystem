@@ -41,11 +41,6 @@ public class EditVisitCompanyActivity extends MySharedActivity {
     private VisitCompanyAdapter visitCompanyAdapter;
     private int[] answerArray;
 
-//    private String studentCount = "";
-//    private int visitWay = 0;
-//    private String visitDate = "";
-//    private String visitComment = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -346,6 +341,9 @@ public class EditVisitCompanyActivity extends MySharedActivity {
     }
 
     public void EditVisitCompany(View view) {
+        SharedService.HideKeyboard(this);
+        activity_Outer.requestFocus();
+
         String Answer = "";
         for (int i = 0; i < answerArray.length; i++) {
             Answer += answerArray[i];

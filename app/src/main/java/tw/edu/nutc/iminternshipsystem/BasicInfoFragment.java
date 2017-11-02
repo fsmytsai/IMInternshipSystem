@@ -405,6 +405,8 @@ public class BasicInfoFragment extends MySharedFragment {
 //    }
 
     public void EditBasicInfo() {
+        SharedService.HideKeyboard(mainActivity);
+        mainActivity.activity_Outer.requestFocus();
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
@@ -466,10 +468,7 @@ public class BasicInfoFragment extends MySharedFragment {
                     public void run() {
                         if (StatusCode == 200) {
                             SharedService.ShowTextToast("修改履歷成功", mainActivity);
-                            mainActivity.getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.MainFrameLayout, new HomeFragment(), "HomeFragment")
-                                    .commit();
+                            mainActivity.CheckLogon();
                         } else {
                             SharedService.HandleError(StatusCode, ResMsg, mainActivity);
                         }

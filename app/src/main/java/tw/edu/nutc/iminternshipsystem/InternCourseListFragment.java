@@ -3,6 +3,7 @@ package tw.edu.nutc.iminternshipsystem;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import okhttp3.Response;
  */
 public class InternCourseListFragment extends MySharedFragment {
 
+    private static final int EDIT_CODE = 90;
     private MainActivity mainActivity;
 
     private InternCourseView internCourseView;
@@ -228,7 +230,7 @@ public class InternCourseListFragment extends MySharedFragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(mainActivity, JournalActivity.class);
                             intent.putExtra("Journal", new Gson().toJson(journal));
-                            startActivity(intent);
+                            startActivityForResult(intent, EDIT_CODE);
                         }
                     });
                     holder.ll_JournalList.addView(ll_JournalBlock);
@@ -240,7 +242,7 @@ public class InternCourseListFragment extends MySharedFragment {
                     public void onClick(View v) {
                         Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
                         intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
-                        startActivity(intent);
+                        startActivityForResult(intent, EDIT_CODE);
                     }
                 });
                 holder.ll_JournalList.addView(ll_JournalBlock);
@@ -277,7 +279,7 @@ public class InternCourseListFragment extends MySharedFragment {
                                     public void onClick(View v) {
                                         Intent intent = new Intent(mainActivity, JournalActivity.class);
                                         intent.putExtra("Journal", new Gson().toJson(journal));
-                                        startActivity(intent);
+                                        startActivityForResult(intent, EDIT_CODE);
                                     }
                                 });
                                 holder.ll_JournalList.addView(ll_JournalBlock);
@@ -289,7 +291,7 @@ public class InternCourseListFragment extends MySharedFragment {
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
                                     intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
-                                    startActivity(intent);
+                                    startActivityForResult(intent, EDIT_CODE);
                                 }
                             });
                             holder.ll_JournalList.addView(ll_JournalBlock);
@@ -390,7 +392,7 @@ public class InternCourseListFragment extends MySharedFragment {
                                     public void onClick(View v) {
                                         Intent intent = new Intent(mainActivity, JournalActivity.class);
                                         intent.putExtra("Journal", new Gson().toJson(journal));
-                                        startActivity(intent);
+                                        startActivityForResult(intent, EDIT_CODE);
                                     }
                                 });
                                 ll_JournalList.addView(ll_JournalBlock);
@@ -402,7 +404,7 @@ public class InternCourseListFragment extends MySharedFragment {
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
                                     intent.putExtra("Review", new Gson().toJson(journalViewArray[Position].reviews));
-                                    startActivity(intent);
+                                    startActivityForResult(intent, EDIT_CODE);
                                 }
                             });
                             ll_JournalList.addView(ll_JournalBlock);
@@ -464,5 +466,13 @@ public class InternCourseListFragment extends MySharedFragment {
         ll_JournalBlock.addView(iv_JournalCheck);
 
         return ll_JournalBlock;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_CODE && resultCode == Activity.RESULT_OK) {
+            Refresh();
+        }
     }
 }

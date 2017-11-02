@@ -851,6 +851,8 @@ public class MainActivity extends MySharedActivity {
         LinearLayout ll_TeacherDrawer = (LinearLayout) findViewById(R.id.ll_TeacherDrawer);
         LinearLayout ll_CompanyDrawer = (LinearLayout) findViewById(R.id.ll_CompanyDrawer);
 
+        LinearLayout ll_Background = (LinearLayout) findViewById(R.id.ll_Background);
+
         CircleImageView civ_StudentImage = (CircleImageView) findViewById(R.id.civ_StudentImage);
         CircleImageView civ_TeacherImage = (CircleImageView) findViewById(R.id.civ_TeacherImage);
         CircleImageView civ_CompanyImage = (CircleImageView) findViewById(R.id.civ_CompanyImage);
@@ -864,11 +866,13 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.GONE);
+            ll_Background.setBackgroundResource(R.drawable.bg_unlog);
         } else if (SharedService.identityView.u_status == 0) {
             ll_NoLoginDrawer.setVisibility(View.GONE);
             ll_StudentDrawer.setVisibility(View.VISIBLE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.GONE);
+            ll_Background.setBackgroundResource(R.drawable.bg_student);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_StudentImage.setTag(SharedService.identityView.profilePic);
@@ -880,6 +884,7 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.VISIBLE);
             ll_CompanyDrawer.setVisibility(View.GONE);
+            ll_Background.setBackgroundResource(R.drawable.bg_teacher);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_TeacherImage.setTag(SharedService.identityView.profilePic);
@@ -891,6 +896,7 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.VISIBLE);
+            ll_Background.setBackgroundResource(R.drawable.bg_office);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_CompanyImage.setTag(SharedService.identityView.profilePic);

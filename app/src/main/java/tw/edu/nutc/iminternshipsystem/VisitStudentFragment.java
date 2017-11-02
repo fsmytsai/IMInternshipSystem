@@ -383,6 +383,9 @@ public class VisitStudentFragment extends MySharedFragment {
     }
 
     private void CreateStudentVisit() {
+        SharedService.HideKeyboard(addVisitRecordActivity);
+        addVisitRecordActivity.activity_Outer.requestFocus();
+
         String Answer = "";
         for (int i = 0; i < answerArray.length; i++) {
             Answer += answerArray[i];

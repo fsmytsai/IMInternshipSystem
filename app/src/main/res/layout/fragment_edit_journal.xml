@@ -176,6 +176,7 @@
                     android:background="@null"
                     android:drawableBottom="@drawable/line"
                     android:drawablePadding="5dp"
+                    android:gravity="center"
                     android:inputType="text"
                     android:textSize="22sp" />
 

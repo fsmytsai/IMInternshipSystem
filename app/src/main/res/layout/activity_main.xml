@@ -178,6 +178,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_Background"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:background="@drawable/header"

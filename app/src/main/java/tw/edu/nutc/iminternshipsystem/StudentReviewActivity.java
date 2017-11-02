@@ -80,7 +80,6 @@ public class StudentReviewActivity extends MySharedActivity {
             return;
         }
 
-
         SharedService.HideKeyboard(this);
         activity_Outer.requestFocus();
 

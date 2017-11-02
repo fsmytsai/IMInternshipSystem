@@ -49,6 +49,9 @@ public class ResetPasswordActivity extends MySharedActivity {
     }
 
     public void ResetPassword(View v) {
+        SharedService.HideKeyboard(this);
+        activity_Outer.requestFocus();
+
         RequestBody formBody = new FormBody.Builder()
                 .add("oldPassword", et_OldPassword.getText().toString())
                 .add("newPassword", et_NewPassword.getText().toString())

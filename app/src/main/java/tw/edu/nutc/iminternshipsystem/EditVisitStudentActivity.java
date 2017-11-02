@@ -364,6 +364,8 @@ public class EditVisitStudentActivity extends MySharedActivity {
     }
 
     public void EditVisitStudent(View view) {
+        SharedService.HideKeyboard(this);
+        activity_Outer.requestFocus();
         String Answer = "";
         for (int i = 0; i < answerArray.length; i++) {
             Answer += answerArray[i];

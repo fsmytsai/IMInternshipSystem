@@ -243,6 +243,9 @@ public class EditCompanyFragment extends MySharedFragment {
     }
 
     private void EditCompany() {
+        SharedService.HideKeyboard(mainActivity);
+        mainActivity.activity_Outer.requestFocus();
+
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
         if (mImg != null) {
@@ -290,10 +293,7 @@ public class EditCompanyFragment extends MySharedFragment {
                     public void run() {
                         if (StatusCode == 200) {
                             SharedService.ShowTextToast("修改廠商資料成功", mainActivity);
-                            mainActivity.getSupportFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.MainFrameLayout, new HomeFragment(), "HomeFragment")
-                                    .commit();
+                            mainActivity.CheckLogon();
                         } else {
                             SharedService.HandleError(StatusCode, ResMsg, mainActivity);
                         }

@@ -163,6 +163,9 @@ public class EditJobActivity extends MySharedActivity {
     }
 
     public void EditJob(View view) {
+        SharedService.HideKeyboard(this);
+        activity_Outer.requestFocus();
+
         RequestBody formBody = new FormBody.Builder()
                 .add("joid", myJob.joid + "")
                 .add("jtypes", rg_JobType.indexOfChild(findViewById(rg_JobType.getCheckedRadioButtonId())) + "")

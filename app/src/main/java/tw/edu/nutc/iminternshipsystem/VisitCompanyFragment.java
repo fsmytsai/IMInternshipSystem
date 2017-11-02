@@ -79,7 +79,7 @@ public class VisitCompanyFragment extends MySharedFragment {
         view.findViewById(R.id.iv_Save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateStudentVisit();
+                CreateCompanyVisit();
             }
         });
     }
@@ -367,7 +367,10 @@ public class VisitCompanyFragment extends MySharedFragment {
         }
     }
 
-    private void CreateStudentVisit() {
+    private void CreateCompanyVisit() {
+        SharedService.HideKeyboard(addVisitRecordActivity);
+        addVisitRecordActivity.activity_Outer.requestFocus();
+
         String Answer = "";
         for (int i = 0; i < answerArray.length; i++) {
             Answer += answerArray[i];

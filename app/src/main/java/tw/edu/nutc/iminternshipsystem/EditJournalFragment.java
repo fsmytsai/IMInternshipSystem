@@ -1,6 +1,7 @@
 package tw.edu.nutc.iminternshipsystem;
 
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -131,6 +132,9 @@ public class EditJournalFragment extends MySharedFragment {
     }
 
     private void EditJournal() {
+        SharedService.HideKeyboard(journalActivity);
+        journalActivity.activity_Outer.requestFocus();
+
         RequestBody formBody = new FormBody.Builder()
                 .add("journalID", journal.journalID + "")
                 .add("journalInstructor", et_InstructorName.getText().toString())
@@ -166,6 +170,8 @@ public class EditJournalFragment extends MySharedFragment {
                     public void run() {
                         if (StatusCode == 200) {
                             SharedService.ShowTextToast("修改成功", journalActivity);
+                            journalActivity.setResult(Activity.RESULT_OK);
+                            journalActivity.finish();
                         } else {
                             SharedService.HandleError(StatusCode, ResMsg, journalActivity);
                         }
