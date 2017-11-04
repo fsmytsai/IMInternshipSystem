@@ -43,7 +43,8 @@
         <activity android:name=".MailActivity" />
         <activity android:name=".InviteInterviewActivity" />
         <activity android:name=".StudentReviewActivity" />
-        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".MyWebViewActivity"></activity>
     </application>
 
 </manifest>

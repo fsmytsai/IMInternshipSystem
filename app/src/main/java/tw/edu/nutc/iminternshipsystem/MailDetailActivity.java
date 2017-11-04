@@ -71,7 +71,7 @@ public class MailDetailActivity extends MySharedActivity {
         tv_MailSender.setText(mail.lSenderName);
         tv_MailRecipient.setText(mail.lRecipientName);
 
-        if (SharedService.identityView.account.equals(mail.lSender))
+        if (SharedService.identityView.account.equals(mail.lSender) || mail.lSender.equals("admin123"))
             findViewById(R.id.ib_ReplyMail).setVisibility(View.GONE);
         else
             findViewById(R.id.ib_ReplyMail).setOnClickListener(new View.OnClickListener() {
@@ -99,6 +99,14 @@ public class MailDetailActivity extends MySharedActivity {
                 ll_MailContent.addView(view);
             } else if (mail.lStatus == 6 || mail.lStatus == 7) {
                 View view = LayoutInflater.from(this).inflate(R.layout.mailstatus6_block, ll_MailContent, false);
+                ll_MailContent.addView(view);
+            } else if (mail.lStatus == 11) {
+                //老師 學生分配到名下
+                View view = LayoutInflater.from(this).inflate(R.layout.mailstatus11_block, ll_MailContent, false);
+                ll_MailContent.addView(view);
+            } else if (mail.lStatus == 13 || mail.lStatus == 14 || mail.lStatus == 15) {
+                //老師 學生填寫完週誌 廠商已批改週誌
+                View view = LayoutInflater.from(this).inflate(R.layout.mailstatus13_block, ll_MailContent, false);
                 ll_MailContent.addView(view);
             }
         }
@@ -362,5 +370,17 @@ public class MailDetailActivity extends MySharedActivity {
                 });
             }
         });
+    }
+
+    public void GoStudentResume(View view) {
+        getIntent().putExtra("MailStatus", 11);
+        setResult(RESULT_OK, getIntent());
+        finish();
+    }
+
+    public void GoManageStudent(View view) {
+        Intent intent = new Intent(this, MyWebViewActivity.class);
+        intent.putExtra("URL", "http://tsaiweb.southeastasia.cloudapp.azure.com/aa9453aa/#Page=studentManagement&courseid=" + mail.lNotes + "&Token=" + SharedService.token);
+        startActivity(intent);
     }
 }

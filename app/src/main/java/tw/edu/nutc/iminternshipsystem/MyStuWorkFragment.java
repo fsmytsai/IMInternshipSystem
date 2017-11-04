@@ -2,8 +2,11 @@ package tw.edu.nutc.iminternshipsystem;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -91,6 +94,15 @@ public class MyStuWorkFragment extends MySharedFragment {
             holder.tv_WorkName.setText(myStudentResumeActivity.resumeView.stu_works.get(position).wName);
             holder.tv_WorkYear.setText(myStudentResumeActivity.resumeView.stu_works.get(position).wCreatedDate);
             holder.tv_WorkLink.setText(myStudentResumeActivity.resumeView.stu_works.get(position).wLink);
+            holder.tv_WorkLink.setTextColor(ContextCompat.getColor(myStudentResumeActivity, android.R.color.holo_blue_dark));
+            holder.tv_WorkLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(myStudentResumeActivity, MyWebViewActivity.class);
+                    intent.putExtra("URL", holder.tv_WorkLink.getText().toString());
+                    startActivity(intent);
+                }
+            });
             holder.iv_Delete.setVisibility(View.GONE);
         }
 

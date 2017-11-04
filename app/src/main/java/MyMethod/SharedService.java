@@ -40,6 +40,7 @@ import tw.edu.nutc.iminternshipsystem.R;
 public class SharedService {
     public static SharedPreferences sp_httpData;
     public static IdentityView identityView;
+    public static String token;
 
     public static OkHttpClient GetClient(Context context) {
         return new OkHttpClient().newBuilder()
@@ -60,9 +61,9 @@ public class SharedService {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             sp_httpData = context.getSharedPreferences("HttpData", context.MODE_PRIVATE);
-            String Token = sp_httpData.getString("Token", "");
+            token = sp_httpData.getString("Token", "");
             try {
-                request = request.newBuilder().addHeader("Authorization", Token).build();
+                request = request.newBuilder().addHeader("Authorization", token).build();
             }catch (Exception e){
                 e.printStackTrace();
             }

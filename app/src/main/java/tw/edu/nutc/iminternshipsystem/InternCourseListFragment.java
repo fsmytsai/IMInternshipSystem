@@ -162,7 +162,6 @@ public class InternCourseListFragment extends MySharedFragment {
         });
     }
 
-
     public class InternCourseListAdapter extends RecyclerView.Adapter<InternCourseListAdapter.ViewHolder> {
 
         public final int TYPE_FOOTER = 1;  //说明是带有Footer的
@@ -223,6 +222,18 @@ public class InternCourseListFragment extends MySharedFragment {
             if (internCourseView.intern_list.get(position).IsOpen) {
                 holder.ll_JournalList.setVisibility(View.VISIBLE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.up);
+
+                LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, true);
+                ll_IPBlock.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
+                        intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
+                        startActivityForResult(intent, EDIT_CODE);
+                    }
+                });
+                holder.ll_JournalList.addView(ll_IPBlock);
+
                 for (final JournalView.Journal journal : journalViewArray[position].journalList) {
                     LinearLayout ll_JournalBlock = GetJournalBlock(journal.journalOrder + 1, journal.journalDetail_1 != null, journal.grade_teacher != 0);
                     ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
@@ -272,6 +283,17 @@ public class InternCourseListFragment extends MySharedFragment {
                         internCourseView.intern_list.get(position).IsOpen = true;
                         if (internCourseView.intern_list.get(position).IsFill) {
                             holder.ll_JournalList.removeAllViews();
+                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, true);
+                            ll_IPBlock.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
+                                    intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
+                                    startActivityForResult(intent, EDIT_CODE);
+                                }
+                            });
+                            holder.ll_JournalList.addView(ll_IPBlock);
+
                             for (final JournalView.Journal journal : journalViewArray[position].journalList) {
                                 LinearLayout ll_JournalBlock = GetJournalBlock(journal.journalOrder + 1, journal.journalDetail_1 != null, journal.grade_teacher != 0);
                                 ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
@@ -385,6 +407,17 @@ public class InternCourseListFragment extends MySharedFragment {
                         if (StatusCode == 200) {
                             journalViewArray[Position] = new Gson().fromJson(ResMsg, JournalView.class);
 
+                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[Position].internProposal.IPStart != null, true);
+                            ll_IPBlock.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                                    intent.putExtra("URL", "");
+                                    startActivityForResult(intent, EDIT_CODE);
+                                }
+                            });
+                            ll_JournalList.addView(ll_IPBlock);
+
                             for (final JournalView.Journal journal : journalViewArray[Position].journalList) {
                                 LinearLayout ll_JournalBlock = GetJournalBlock(journal.journalOrder + 1, journal.journalDetail_1 != null, journal.grade_teacher != 0);
                                 ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
@@ -398,7 +431,7 @@ public class InternCourseListFragment extends MySharedFragment {
                                 ll_JournalList.addView(ll_JournalBlock);
                             }
 
-                            LinearLayout ll_JournalBlock = GetJournalBlock(-1, journalViewArray[Position].reviews.reContent != null, journalViewArray[Position].reviews.reRead);
+                            LinearLayout ll_JournalBlock = GetJournalBlock(-1, !journalViewArray[Position].reviews.reContent.equals(""), journalViewArray[Position].reviews.reRead);
                             ll_JournalBlock.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -436,10 +469,12 @@ public class InternCourseListFragment extends MySharedFragment {
         LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams2.weight = 1;
         TextView tv_JournalNum = new TextView(mainActivity);
-        if (JournalNum != -1)
-            tv_JournalNum.setText("第" + JournalNum + "份週誌");
-        else
+        if (JournalNum == -1)
             tv_JournalNum.setText("實習總心得");
+        else if (JournalNum == -2)
+            tv_JournalNum.setText("實習計劃書");
+        else
+            tv_JournalNum.setText("第" + JournalNum + "份週誌");
 
         tv_JournalNum.setTextColor(ContextCompat.getColor(mainActivity, android.R.color.black));
         tv_JournalNum.setTextSize(22f);
@@ -455,15 +490,18 @@ public class InternCourseListFragment extends MySharedFragment {
         iv_JournalSend.setLayoutParams(layoutParams1);
 
         ImageView iv_JournalCheck = new ImageView(mainActivity);
-        if (IsCheck)
-            iv_JournalCheck.setImageResource(R.drawable.checked);
-        else
-            iv_JournalCheck.setImageResource(R.drawable.check);
-        iv_JournalCheck.setLayoutParams(layoutParams1);
 
         ll_JournalBlock.addView(tv_JournalNum);
         ll_JournalBlock.addView(iv_JournalSend);
-        ll_JournalBlock.addView(iv_JournalCheck);
+
+        if (JournalNum != -2) {
+            if (IsCheck)
+                iv_JournalCheck.setImageResource(R.drawable.checked);
+            else
+                iv_JournalCheck.setImageResource(R.drawable.check);
+            iv_JournalCheck.setLayoutParams(layoutParams1);
+            ll_JournalBlock.addView(iv_JournalCheck);
+        }
 
         return ll_JournalBlock;
     }

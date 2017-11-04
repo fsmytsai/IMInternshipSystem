@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -86,7 +87,8 @@ public class MySharedActivity extends AppCompatActivity {
                     .getBottom())) {
 
                 SharedService.HideKeyboard(this);
-                activity_Outer.requestFocus();
+                if (activity_Outer != null)
+                    activity_Outer.requestFocus();
             }
         }
         boolean ret = super.dispatchTouchEvent(event);

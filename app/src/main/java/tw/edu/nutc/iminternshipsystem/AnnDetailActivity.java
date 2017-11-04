@@ -81,14 +81,8 @@ public class AnnDetailActivity extends MySharedActivity {
                         .setPositiveButton("下載", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent();
-
-                                intent.setAction("android.intent.action.VIEW");
-
-                                Uri content_url = Uri.parse(getString(R.string.BackEndPath) + "api/downloadAnnouncementFileByFileName?fileName=" + FileName);
-
-                                intent.setData(content_url);
-
+                                Uri uri = Uri.parse(getString(R.string.BackEndPath) + "api/downloadAnnouncementFileByFileName?fileName=" + FileName);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                 startActivity(intent);
                             }
                         })

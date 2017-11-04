@@ -94,13 +94,6 @@ public class MainActivity extends MySharedActivity {
                 .replace(R.id.MainFrameLayout, new SplashScreenFragment(), "SplashScreenFragment")
                 .commit();
 
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                CheckLogon();
-//            }
-//        }, 3000);
         CheckLogon();
     }
 
@@ -667,6 +660,9 @@ public class MainActivity extends MySharedActivity {
                 if (MailStatus == 1) {
                     drawer.closeDrawer(GravityCompat.END);
                     GoProcessResume(new View(this));
+                } else if (MailStatus == 11) {
+                    drawer.closeDrawer(GravityCompat.END);
+                    GoMyStudent(new View(this));
                 }
             } else {
                 mailView.data.get(nowPosition).read = true;
@@ -786,6 +782,7 @@ public class MainActivity extends MySharedActivity {
         for (int i = StartPosition - 1; i >= 0; i--) {
             final int Position = i;
             if (mailView.data.get(Position).isDelete) {
+                rv_MailList.scrollToPosition(Position);
                 String url = getString(R.string.BackEndPath);
                 if (IsForce) {
                     if (mailType == 1) {
