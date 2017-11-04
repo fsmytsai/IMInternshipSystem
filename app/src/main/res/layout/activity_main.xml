@@ -33,6 +33,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_NoLoginBackground"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:background="@drawable/header"
@@ -178,7 +179,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/ll_Background"
+                        android:id="@+id/ll_StudentBackground"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:background="@drawable/header"
@@ -404,6 +405,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_TeacherBackground"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:background="@drawable/header"
@@ -680,6 +682,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/ll_CompanyBackground"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:background="@drawable/header"

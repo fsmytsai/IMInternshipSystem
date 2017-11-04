@@ -176,7 +176,8 @@ public class MainActivity extends MySharedActivity {
                                     .replace(R.id.MainFrameLayout, new HomeFragment(), "HomeFragment")
                                     .commit();
 
-                            initViewsAfterLogin();
+                            if (nav_end == null)
+                                initViewsAfterLogin();
                             Refresh();
                         } else if (StatusCode == 401) {
                             SharedService.identityView = null;
@@ -188,6 +189,7 @@ public class MainActivity extends MySharedActivity {
                                 SharedService.ShowTextToast("登出成功", MainActivity.this);
                                 contentFragmentList.clear();
                                 drawer.removeView(nav_end);
+                                nav_end = null;
                             }
                             getSupportFragmentManager()
                                     .beginTransaction()
@@ -851,7 +853,10 @@ public class MainActivity extends MySharedActivity {
         LinearLayout ll_TeacherDrawer = (LinearLayout) findViewById(R.id.ll_TeacherDrawer);
         LinearLayout ll_CompanyDrawer = (LinearLayout) findViewById(R.id.ll_CompanyDrawer);
 
-        LinearLayout ll_Background = (LinearLayout) findViewById(R.id.ll_Background);
+        LinearLayout ll_NoLoginBackground = (LinearLayout) findViewById(R.id.ll_NoLoginBackground);
+        LinearLayout ll_StudentBackground = (LinearLayout) findViewById(R.id.ll_StudentBackground);
+        LinearLayout ll_TeacherBackground = (LinearLayout) findViewById(R.id.ll_TeacherBackground);
+        LinearLayout ll_CompanyBackground = (LinearLayout) findViewById(R.id.ll_CompanyBackground);
 
         CircleImageView civ_StudentImage = (CircleImageView) findViewById(R.id.civ_StudentImage);
         CircleImageView civ_TeacherImage = (CircleImageView) findViewById(R.id.civ_TeacherImage);
@@ -866,13 +871,13 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.GONE);
-            ll_Background.setBackgroundResource(R.drawable.bg_unlog);
+            ll_NoLoginBackground.setBackgroundResource(R.drawable.bg_unlog);
         } else if (SharedService.identityView.u_status == 0) {
             ll_NoLoginDrawer.setVisibility(View.GONE);
             ll_StudentDrawer.setVisibility(View.VISIBLE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.GONE);
-            ll_Background.setBackgroundResource(R.drawable.bg_student);
+            ll_StudentBackground.setBackgroundResource(R.drawable.bg_student);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_StudentImage.setTag(SharedService.identityView.profilePic);
@@ -884,7 +889,7 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.VISIBLE);
             ll_CompanyDrawer.setVisibility(View.GONE);
-            ll_Background.setBackgroundResource(R.drawable.bg_teacher);
+            ll_TeacherBackground.setBackgroundResource(R.drawable.bg_teacher);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_TeacherImage.setTag(SharedService.identityView.profilePic);
@@ -896,7 +901,7 @@ public class MainActivity extends MySharedActivity {
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.GONE);
             ll_CompanyDrawer.setVisibility(View.VISIBLE);
-            ll_Background.setBackgroundResource(R.drawable.bg_office);
+            ll_CompanyBackground.setBackgroundResource(R.drawable.bg_office);
 
             if (SharedService.identityView.profilePic != null) {
                 civ_CompanyImage.setTag(SharedService.identityView.profilePic);

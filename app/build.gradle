@@ -10,7 +10,7 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion "26.0.2"
+    buildToolsVersion "27.0.0"
     defaultConfig {
         applicationId "tw.edu.nutc.iminternshipsystem"
         minSdkVersion 19
@@ -45,6 +45,5 @@ dependencies {
     compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'
     compile 'me.grantland:autofittextview:0.2.+'
     compile 'com.google.vr:sdk-panowidget:1.20.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     testCompile 'junit:junit:4.12'
 }
