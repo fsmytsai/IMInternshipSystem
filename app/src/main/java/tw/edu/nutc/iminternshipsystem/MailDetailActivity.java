@@ -100,7 +100,7 @@ public class MailDetailActivity extends MySharedActivity {
             } else if (mail.lStatus == 6 || mail.lStatus == 7) {
                 View view = LayoutInflater.from(this).inflate(R.layout.mailstatus6_block, ll_MailContent, false);
                 ll_MailContent.addView(view);
-            } else if (mail.lStatus == 11) {
+            } else if (mail.lStatus == 11 && SharedService.identityView.u_status == 1) {
                 //老師 學生分配到名下
                 View view = LayoutInflater.from(this).inflate(R.layout.mailstatus11_block, ll_MailContent, false);
                 ll_MailContent.addView(view);
@@ -380,7 +380,7 @@ public class MailDetailActivity extends MySharedActivity {
 
     public void GoManageStudent(View view) {
         Intent intent = new Intent(this, MyWebViewActivity.class);
-        intent.putExtra("URL", "http://tsaiweb.southeastasia.cloudapp.azure.com/aa9453aa/#Page=studentManagement&courseid=" + mail.lNotes + "&Token=" + SharedService.token);
+        intent.putExtra("URL", getString(R.string.FrontEndPath) + "studentManagement&courseid=" + mail.lNotes + "&Token=" + SharedService.token);
         startActivity(intent);
     }
 }

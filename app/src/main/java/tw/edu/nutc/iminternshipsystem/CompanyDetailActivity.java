@@ -28,6 +28,7 @@ import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import MyMethod.SharedService;
 import ViewModel.AllJobView;
@@ -68,7 +69,7 @@ public class CompanyDetailActivity extends MySharedActivity {
         c_account = getIntent().getStringExtra("c_account");
 
         company = new Gson().fromJson(getIntent().getStringExtra("Company"), CompanyView.Company.class);
-
+        SetCache((int) Runtime.getRuntime().maxMemory() / 10);
         Refresh();
     }
 
@@ -257,7 +258,7 @@ public class CompanyDetailActivity extends MySharedActivity {
                                        int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
 
-                    if (SharedService.identityView.u_status == 0){
+                    if (SharedService.identityView.u_status == 0) {
                         if (dy < 0) {
                             if (!isAnimatingOut) {
                                 iv_GoMail.setVisibility(View.VISIBLE);
@@ -363,6 +364,7 @@ public class CompanyDetailActivity extends MySharedActivity {
                     holder.iv_CompanyImage.setTag("");
                     holder.iv_CompanyImage.setImageResource(R.drawable.defaultmimg);
                 }
+
                 holder.tv_CompanyName.setText(company.c_name);
                 holder.tv_CompanyType.setText(company.ctypes);
                 holder.tv_CompanyAddress.setText(company.caddress);
@@ -371,12 +373,16 @@ public class CompanyDetailActivity extends MySharedActivity {
                 holder.tv_CompanyTel.setText(company.tel);
                 holder.tv_CompanyIntro.setText(company.cintroduction);
 
-                if (isFirstLoadVR) {
-                    isFirstLoadVR = false;
+                if (company.introductionPic != null) {
+                    if (isFirstLoadVR) {
+                        isFirstLoadVR = false;
 
-                    vpv_CompanyImage.setInfoButtonEnabled(false);
-                    mLoadPanoramaImageTask = new LoadPanoramaImageTask(vpv_CompanyImage);
-                    mLoadPanoramaImageTask.execute();
+                        vpv_CompanyImage.setInfoButtonEnabled(false);
+                        mLoadPanoramaImageTask = new LoadPanoramaImageTask(vpv_CompanyImage, company.introductionPic);
+                        mLoadPanoramaImageTask.execute();
+                    }
+                } else {
+                    vpv_CompanyImage.setVisibility(View.GONE);
                 }
 
                 return;
@@ -550,18 +556,21 @@ public class CompanyDetailActivity extends MySharedActivity {
 
     private class LoadPanoramaImageTask extends AsyncTask<Void, Void, Bitmap> {
         private VrPanoramaView mVrPanoramaView;
+        private String introductionPic;
 
-        public LoadPanoramaImageTask(VrPanoramaView mVrPanoramaView) {
+        public LoadPanoramaImageTask(VrPanoramaView mVrPanoramaView, String IntroductionPic) {
             this.mVrPanoramaView = mVrPanoramaView;
+            this.introductionPic = IntroductionPic;
         }
 
         @Override
         protected Bitmap doInBackground(Void... params) {
             try {
                 //加载assets目录下的全景图片
-                AssetManager assetManager = getAssets();
-                InputStream open = assetManager.open("test360.jpg");
-                return BitmapFactory.decodeStream(open);
+
+                URL url = new URL(getString(R.string.BackEndPath) + "storage/user-upload/" + introductionPic);
+                Bitmap image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return image;
             } catch (IOException e) {
                 e.printStackTrace();
             }

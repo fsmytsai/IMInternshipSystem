@@ -99,21 +99,7 @@ public class HomeFragment extends MySharedFragment {
             }
         });
 
-//        Rect rectangle = new Rect();
-//        Window window = getActivity().getWindow();
-//        window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
-//        int statusBarHeight = rectangle.top;
-//
-//        TypedValue value = new TypedValue();
-//        getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, value, true);
-//
-//        CollapsingToolbarLayout.LayoutParams layoutParams = new CollapsingToolbarLayout.LayoutParams(CollapsingToolbarLayout.LayoutParams.MATCH_PARENT, TypedValue.complexToDimensionPixelSize(value.data, getResources().getDisplayMetrics()));
-//        layoutParams.setMargins(0, statusBarHeight, 0, 0);
-//        layoutParams.setCollapseMode(CollapsingToolbarLayout.LayoutParams.COLLAPSE_MODE_PIN);
-//        Toolbar toolbar = view.findViewById(R.id.toolbar);
-//        toolbar.setLayoutParams(layoutParams);
-
-        if (SharedService.identityView == null)
+        if (SharedService.identityView == null || SharedService.identityView.u_status == 3)
             view.findViewById(R.id.ib_Letter).setVisibility(View.GONE);
         else
             view.findViewById(R.id.ib_Letter).setVisibility(View.VISIBLE);

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IMInternshipSystem.iml" filepath="$PROJECT_DIR$/IMInternshipSystem.iml" />
+      <module fileurl="file://D:\Android\AndroidStudioProjects\InternSystem\IMInternshipSystem.iml" filepath="D:\Android\AndroidStudioProjects\InternSystem\IMInternshipSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InternSystem.iml" filepath="$PROJECT_DIR$/InternSystem.iml" />
       <module fileurl="file://C:\AndroidStudioProjects\IMInternshipSystem\InternSystem.iml" filepath="C:\AndroidStudioProjects\IMInternshipSystem\InternSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

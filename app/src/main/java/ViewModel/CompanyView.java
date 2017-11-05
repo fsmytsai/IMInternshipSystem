@@ -20,6 +20,7 @@ public class CompanyView {
         public String cintroduction;
         public int cempolyee_num;
         public String profilePic;
+        public String introductionPic;
         public String tel;
     }
 

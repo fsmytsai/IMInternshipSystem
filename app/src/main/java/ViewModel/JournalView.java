@@ -47,5 +47,6 @@ public class JournalView {
         public int IPId;
         public int SCid;
         public String IPStart;
+        public int IPRead;
     }
 }

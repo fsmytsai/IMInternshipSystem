@@ -223,13 +223,13 @@ public class InternCourseListFragment extends MySharedFragment {
                 holder.ll_JournalList.setVisibility(View.VISIBLE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.up);
 
-                LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, true);
+                LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, journalViewArray[position].internProposal.IPRead != 0);
                 ll_IPBlock.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
-                        intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
-                        startActivityForResult(intent, EDIT_CODE);
+                        Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                        intent.putExtra("URL", getString(R.string.FrontEndPath) + "weekly&SCId=" + journalViewArray[position].internProposal.SCid + "&Token=" + SharedService.token);
+                        startActivity(intent);
                     }
                 });
                 holder.ll_JournalList.addView(ll_IPBlock);
@@ -283,13 +283,13 @@ public class InternCourseListFragment extends MySharedFragment {
                         internCourseView.intern_list.get(position).IsOpen = true;
                         if (internCourseView.intern_list.get(position).IsFill) {
                             holder.ll_JournalList.removeAllViews();
-                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, true);
+                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[position].internProposal.IPStart != null, journalViewArray[position].internProposal.IPRead != 0);
                             ll_IPBlock.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(mainActivity, StudentReviewActivity.class);
-                                    intent.putExtra("Review", new Gson().toJson(journalViewArray[position].reviews));
-                                    startActivityForResult(intent, EDIT_CODE);
+                                    Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                                    intent.putExtra("URL", getString(R.string.FrontEndPath) + "weekly&SCId=" + journalViewArray[position].internProposal.SCid + "&Token=" + SharedService.token);
+                                    startActivity(intent);
                                 }
                             });
                             holder.ll_JournalList.addView(ll_IPBlock);
@@ -407,13 +407,13 @@ public class InternCourseListFragment extends MySharedFragment {
                         if (StatusCode == 200) {
                             journalViewArray[Position] = new Gson().fromJson(ResMsg, JournalView.class);
 
-                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[Position].internProposal.IPStart != null, true);
+                            LinearLayout ll_IPBlock = GetJournalBlock(-2, journalViewArray[Position].internProposal.IPStart != null, journalViewArray[Position].internProposal.IPRead != 0);
                             ll_IPBlock.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
-                                    intent.putExtra("URL", "");
-                                    startActivityForResult(intent, EDIT_CODE);
+                                    intent.putExtra("URL", getString(R.string.FrontEndPath) + "weekly&SCId=" + journalViewArray[Position].internProposal.SCid + "&Token=" + SharedService.token);
+                                    startActivity(intent);
                                 }
                             });
                             ll_JournalList.addView(ll_IPBlock);
@@ -494,14 +494,13 @@ public class InternCourseListFragment extends MySharedFragment {
         ll_JournalBlock.addView(tv_JournalNum);
         ll_JournalBlock.addView(iv_JournalSend);
 
-        if (JournalNum != -2) {
-            if (IsCheck)
-                iv_JournalCheck.setImageResource(R.drawable.checked);
-            else
-                iv_JournalCheck.setImageResource(R.drawable.check);
-            iv_JournalCheck.setLayoutParams(layoutParams1);
-            ll_JournalBlock.addView(iv_JournalCheck);
-        }
+        if (IsCheck)
+            iv_JournalCheck.setImageResource(R.drawable.checked);
+        else
+            iv_JournalCheck.setImageResource(R.drawable.check);
+        iv_JournalCheck.setLayoutParams(layoutParams1);
+        ll_JournalBlock.addView(iv_JournalCheck);
+
 
         return ll_JournalBlock;
     }

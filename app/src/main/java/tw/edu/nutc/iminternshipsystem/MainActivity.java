@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -157,9 +158,18 @@ public class MainActivity extends MySharedActivity {
 
                             if (SharedService.identityView.u_status == 3) {
                                 //系辦
-                                SharedService.ShowTextToast("系辦請使用網頁版!", MainActivity.this);
-                                finish();
-                                return;
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setMessage("系辦僅提供網頁版，是否開啟?")
+                                        .setNeutralButton("否", null)
+                                        .setPositiveButton("開啟", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Uri uri = Uri.parse("http://tsaiweb.southeastasia.cloudapp.azure.com/aa9453aa/#Page=home_Log&Token=" + SharedService.token);
+                                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .show();
                             }
 
                             SetColor();
@@ -169,9 +179,10 @@ public class MainActivity extends MySharedActivity {
                                     .replace(R.id.MainFrameLayout, new HomeFragment(), "HomeFragment")
                                     .commit();
 
-                            if (nav_end == null)
+                            if (nav_end == null && SharedService.identityView.u_status != 3){
                                 initViewsAfterLogin();
-                            Refresh();
+                                Refresh();
+                            }
                         } else if (StatusCode == 401) {
                             SharedService.identityView = null;
                             SetColor();
@@ -207,7 +218,6 @@ public class MainActivity extends MySharedActivity {
         NavigationView.LayoutParams layoutParams = new NavigationView.LayoutParams(NavigationView.LayoutParams.MATCH_PARENT, NavigationView.LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(0, statusBarHeight, 0, 0);
         nav_end.findViewById(R.id.ll_MailList).setLayoutParams(layoutParams);
-
 
         cb_DeleteAll = (CheckBox) nav_end.findViewById(R.id.cb_DeleteAll);
 
@@ -863,7 +873,7 @@ public class MainActivity extends MySharedActivity {
         TextView tv_TeacherName = (TextView) findViewById(R.id.tv_TeacherName);
         TextView tv_CompanyName = (TextView) findViewById(R.id.tv_CompanyName);
 
-        if (SharedService.identityView == null) {
+        if (SharedService.identityView == null || SharedService.identityView.u_status == 3) {
             ll_NoLoginDrawer.setVisibility(View.VISIBLE);
             ll_StudentDrawer.setVisibility(View.GONE);
             ll_TeacherDrawer.setVisibility(View.GONE);
@@ -1013,7 +1023,7 @@ public class MainActivity extends MySharedActivity {
     public void Logout(View v) {
         drawer.closeDrawer(GravityCompat.START);
         SharedService.sp_httpData.edit()
-                .putString("Token", "Bearer ")
+                .putString("Token", "")
                 .apply();
         isLogout = true;
         CheckLogon();

@@ -43,28 +43,23 @@ public class SharedService {
     public static String token;
 
     public static OkHttpClient GetClient(Context context) {
+        sp_httpData = context.getSharedPreferences("HttpData", context.MODE_PRIVATE);
         return new OkHttpClient().newBuilder()
-                .addInterceptor(new AddHeaderInterceptor(context))
+                .addInterceptor(new AddHeaderInterceptor())
                 .connectTimeout(3, TimeUnit.SECONDS)
                 .readTimeout(8, TimeUnit.SECONDS)
                 .build();
     }
 
     private static class AddHeaderInterceptor implements Interceptor {
-        private Context context;
-
-        public AddHeaderInterceptor(Context mContext) {
-            context = mContext;
-        }
 
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            sp_httpData = context.getSharedPreferences("HttpData", context.MODE_PRIVATE);
             token = sp_httpData.getString("Token", "");
             try {
-                request = request.newBuilder().addHeader("Authorization", token).build();
-            }catch (Exception e){
+                request = request.newBuilder().addHeader("Authorization", "Bearer " + token).build();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return chain.proceed(request);
@@ -148,7 +143,7 @@ public class SharedService {
                 .show();
     }
 
-    public static Drawable CutBitmapToDrawable(Bitmap bitmap,Context context){
+    public static Drawable CutBitmapToDrawable(Bitmap bitmap, Context context) {
         int w = bitmap.getWidth(); // 得到图片的宽，高
         int h = bitmap.getHeight();
 
@@ -191,8 +186,8 @@ public class SharedService {
         }
     }
 
-    public static float DipToPixels(Context context, float dipValue){
+    public static float DipToPixels(Context context, float dipValue) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,  dipValue, metrics);
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
     }
 }

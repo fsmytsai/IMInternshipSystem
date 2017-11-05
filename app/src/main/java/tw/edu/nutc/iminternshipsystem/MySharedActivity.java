@@ -144,7 +144,7 @@ public class MySharedActivity extends AppCompatActivity {
                     IsCut,
                     iMyImgCallBack
             );
-        } else if (imageView != null) {
+        } else {
             if (IsCut)
                 imageView.setImageDrawable(SharedService.CutBitmapToDrawable(bitmap, this));
             else
@@ -219,60 +219,4 @@ public class MySharedActivity extends AppCompatActivity {
             }
         });
     }
-
-//    public void showImage(ImageView imageView, String ImgName, boolean IsCut) {
-//        Bitmap bitmap = null;
-//        if (mMemoryCaches != null)
-//            bitmap = getBitmapFromLrucache(ImgName);
-//        if (bitmap == null) {
-//            LoadImgByOkHttp(
-//                    imageView,
-//                    ImgName,
-//                    getString(R.string.BackEndPath) + "storage/user-upload/" + ImgName,
-//                    IsCut
-//            );
-//        } else if (imageView != null) {
-//            if (IsCut)
-//                imageView.setImageDrawable(SharedService.CutBitmapToDrawable(bitmap, this));
-//            else
-//                imageView.setImageBitmap(bitmap);
-//        }
-//    }
-//
-//    public void LoadImgByOkHttp(final ImageView imageView, final String ImgName, final String url, final boolean IsCut) {
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-//
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        SharedService.ShowTextToast("請檢察網路連線", MySharedActivity.this);
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                InputStream inputStream = response.body().byteStream();
-//                final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (bitmap != null) {
-//                            addBitmapToLrucaches(ImgName, bitmap);
-//                            if (imageView != null)
-//                                if (IsCut)
-//                                    imageView.setImageDrawable(SharedService.CutBitmapToDrawable(bitmap, MySharedActivity.this));
-//                                else
-//                                    imageView.setImageBitmap(bitmap);
-//                        }
-//                    }
-//                });
-//            }
-//        });
-//    }
 }

@@ -119,7 +119,7 @@ public class LoginFragment extends MySharedFragment {
                         if (StatusCode == 200) {
                             String Token = new Gson().fromJson(ResMsg, String.class);
                             SharedService.sp_httpData.edit()
-                                    .putString("Token", "Bearer " + Token)
+                                    .putString("Token", Token)
                                     .apply();
                             mainActivity.CheckLogon();
                             SharedService.ShowTextToast("登入成功", mainActivity);
