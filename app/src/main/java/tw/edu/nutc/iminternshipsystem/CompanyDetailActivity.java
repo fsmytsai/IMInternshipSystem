@@ -3,7 +3,6 @@ package tw.edu.nutc.iminternshipsystem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -27,7 +26,6 @@ import com.google.gson.Gson;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 import MyMethod.SharedService;
@@ -169,7 +167,7 @@ public class CompanyDetailActivity extends MySharedActivity {
             iv_GoMail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(CompanyDetailActivity.this, MailActivity.class);
+                    Intent intent = new Intent(CompanyDetailActivity.this, SendMailActivity.class);
                     intent.putExtra("c_account", company.c_account);
                     startActivity(intent);
                 }
@@ -366,12 +364,12 @@ public class CompanyDetailActivity extends MySharedActivity {
                 }
 
                 holder.tv_CompanyName.setText(company.c_name);
-                holder.tv_CompanyType.setText(company.ctypes);
-                holder.tv_CompanyAddress.setText(company.caddress);
-                holder.tv_CompanyFax.setText(company.cfax);
+                holder.tv_CompanyType.setText(company.ctypes != null ? company.ctypes : "尚未填寫");
+                holder.tv_CompanyAddress.setText(company.caddress != null ? company.caddress : "尚未填寫");
+                holder.tv_CompanyFax.setText(company.cfax != null ? company.cfax : "尚未填寫");
                 holder.tv_CompanyEmpolyeeNum.setText(company.cempolyee_num + "");
                 holder.tv_CompanyTel.setText(company.tel);
-                holder.tv_CompanyIntro.setText(company.cintroduction);
+                holder.tv_CompanyIntro.setText(company.cintroduction != null ? company.cintroduction : "簡介尚未填寫");
 
                 if (company.introductionPic != null) {
                     if (isFirstLoadVR) {

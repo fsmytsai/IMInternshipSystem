@@ -179,10 +179,9 @@ public class MainActivity extends MySharedActivity {
                                     .replace(R.id.MainFrameLayout, new HomeFragment(), "HomeFragment")
                                     .commit();
 
-                            if (nav_end == null && SharedService.identityView.u_status != 3){
+                            if (nav_end == null && SharedService.identityView.u_status != 3)
                                 initViewsAfterLogin();
-                                Refresh();
-                            }
+
                         } else if (StatusCode == 401) {
                             SharedService.identityView = null;
                             SetColor();
@@ -209,6 +208,7 @@ public class MainActivity extends MySharedActivity {
     }
 
     private void initViewsAfterLogin() {
+
         nav_end = LayoutInflater.from(this).inflate(R.layout.nav_end, drawer, false);
 
         Rect rectangle = new Rect();
@@ -361,6 +361,10 @@ public class MainActivity extends MySharedActivity {
         mSwipeLayout.setSize(SwipeRefreshLayout.DEFAULT);
 
         drawer.addView(nav_end);
+
+        SetCache((int) Runtime.getRuntime().maxMemory() / 10);
+
+        Refresh();
     }
 
     private void Refresh() {
@@ -532,6 +536,14 @@ public class MainActivity extends MySharedActivity {
                 }
             });
 
+            if (mail.senderPic != null) {
+                holder.iv_SenderImg.setTag(mail.senderPic);
+                showImage(holder.iv_SenderImg, mail.senderPic, true, null);
+            } else {
+                holder.iv_SenderImg.setTag("");
+                holder.iv_SenderImg.setImageResource(R.drawable.defaultmimg);
+            }
+
             holder.tv_MailSender.setText(mail.lSenderName);
             holder.tv_MailTitle.setText(mail.lTitle);
 
@@ -634,6 +646,7 @@ public class MainActivity extends MySharedActivity {
             public LinearLayout ll_MailBlockAll;
             private LinearLayout ll_MailBlock;
             private CheckBox cb_IsDelete;
+            private ImageView iv_SenderImg;
             private TextView tv_MailSender;
             private TextView tv_MailTitle;
             private ImageView iv_MarkMail;
@@ -652,6 +665,7 @@ public class MainActivity extends MySharedActivity {
                 ll_MailBlockAll = (LinearLayout) itemView.findViewById(R.id.ll_MailBlockAll);
                 ll_MailBlock = (LinearLayout) itemView.findViewById(R.id.ll_MailBlock);
                 cb_IsDelete = (CheckBox) itemView.findViewById(R.id.cb_IsDelete);
+                iv_SenderImg = (ImageView) itemView.findViewById(R.id.iv_SenderImg);
                 tv_MailSender = (TextView) itemView.findViewById(R.id.tv_MailSender);
                 tv_MailTitle = (TextView) itemView.findViewById(R.id.tv_MailTitle);
                 iv_MarkMail = (ImageView) itemView.findViewById(R.id.iv_MarkMail);

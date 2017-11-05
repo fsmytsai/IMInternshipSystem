@@ -157,10 +157,9 @@ public class VisitRecordActivity extends MySharedActivity {
         layoutParams.setMargins(0, (int) SharedService.DipToPixels(this, 10), 0, 0);
         LinearLayout ll_ExistVisitBlock = new LinearLayout(this);
         ll_ExistVisitBlock.setOrientation(LinearLayout.HORIZONTAL);
-        int pad = (int) SharedService.DipToPixels(this, 5);
-        ll_ExistVisitBlock.setPadding(pad, 0, pad, 0);
+        ll_ExistVisitBlock.setPadding((int) SharedService.DipToPixels(this, 20), 0, 0, 0);
         ll_ExistVisitBlock.setLayoutParams(layoutParams);
-        ll_ExistVisitBlock.setGravity(Gravity.CENTER);
+        ll_ExistVisitBlock.setGravity(Gravity.CENTER_VERTICAL);
 
         LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams((int) SharedService.DipToPixels(this, 40), (int) SharedService.DipToPixels(this, 40));
         ImageView iv_MImg = new ImageView(this);
@@ -172,7 +171,7 @@ public class VisitRecordActivity extends MySharedActivity {
         iv_MImg.setLayoutParams(layoutParams1);
 
         LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams2.setMargins((int) SharedService.DipToPixels(this, 40), 0, 0, 0);
+        layoutParams2.setMargins((int) SharedService.DipToPixels(this, 20), 0, 0, 0);
         TextView tv_StudentName = new TextView(this);
         tv_StudentName.setText(Text);
         tv_StudentName.setTextColor(ContextCompat.getColor(this, android.R.color.black));

@@ -18,7 +18,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MailActivity extends MySharedActivity {
+public class SendMailActivity extends MySharedActivity {
     private EditText et_MailTitle;
     private EditText et_MailContent;
     private String c_account;
@@ -27,7 +27,7 @@ public class MailActivity extends MySharedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mail);
+        setContentView(R.layout.activity_send_mail);
         c_account = getIntent().getStringExtra("c_account");
         slId = getIntent().getIntExtra("slId", -1);
         initView();
@@ -84,7 +84,7 @@ public class MailActivity extends MySharedActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        SharedService.ShowTextToast("請檢察網路連線", MailActivity.this);
+                        SharedService.ShowTextToast("請檢察網路連線", SendMailActivity.this);
                     }
                 });
             }
@@ -98,10 +98,10 @@ public class MailActivity extends MySharedActivity {
                     @Override
                     public void run() {
                         if (StatusCode == 200) {
-                            SharedService.ShowTextToast("寄信成功", MailActivity.this);
+                            SharedService.ShowTextToast("寄信成功", SendMailActivity.this);
                             finish();
                         } else {
-                            SharedService.HandleError(StatusCode, ResMsg, MailActivity.this);
+                            SharedService.HandleError(StatusCode, ResMsg, SendMailActivity.this);
                         }
                     }
                 });
@@ -126,7 +126,7 @@ public class MailActivity extends MySharedActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        SharedService.ShowTextToast("請檢察網路連線", MailActivity.this);
+                        SharedService.ShowTextToast("請檢察網路連線", SendMailActivity.this);
                     }
                 });
             }
@@ -140,10 +140,10 @@ public class MailActivity extends MySharedActivity {
                     @Override
                     public void run() {
                         if (StatusCode == 200) {
-                            SharedService.ShowTextToast("回信成功", MailActivity.this);
+                            SharedService.ShowTextToast("回信成功", SendMailActivity.this);
                             finish();
                         } else {
-                            SharedService.HandleError(StatusCode, ResMsg, MailActivity.this);
+                            SharedService.HandleError(StatusCode, ResMsg, SendMailActivity.this);
                         }
                     }
                 });

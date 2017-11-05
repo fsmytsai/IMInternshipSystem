@@ -72,7 +72,7 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="統一編號"
-                android:inputType="textPassword" />
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/et_Password"
@@ -124,7 +124,7 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="公司電話"
-                android:inputType="textPersonName" />
+                android:inputType="phone" />
 
             <EditText
                 android:id="@+id/et_Email"
@@ -137,7 +137,7 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="信箱"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tw.edu.nutc.iminternshipsystem.MailActivity">
+    tools:context="tw.edu.nutc.iminternshipsystem.SendMailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

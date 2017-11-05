@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -214,7 +213,6 @@ public class VisitCourseListFragment extends MySharedFragment {
             if (visitCourseView.CourseList.get(position).IsOpen) {
                 holder.ll_StudentListBlock.setVisibility(View.VISIBLE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.up);
-                Log.e("IsOpen", "Position " + position + " getChildCount " + holder.ll_StudentListBlock.getChildCount());
                 for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
                     LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
                     ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
@@ -227,7 +225,6 @@ public class VisitCourseListFragment extends MySharedFragment {
                     });
                     holder.ll_StudentListBlock.addView(ll_StudentBlock);
                 }
-                Log.e("IsOpen", "Position " + position + " getChildCount " + holder.ll_StudentListBlock.getChildCount());
             } else {
                 holder.ll_StudentListBlock.setVisibility(View.GONE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.down);
@@ -355,9 +352,10 @@ public class VisitCourseListFragment extends MySharedFragment {
         int pad = (int) SharedService.DipToPixels(mainActivity, 5);
         ll_StudentBlock.setPadding(pad, 0, pad, 0);
         ll_StudentBlock.setLayoutParams(layoutParams);
-        ll_StudentBlock.setGravity(Gravity.CENTER);
+        ll_StudentBlock.setGravity(Gravity.CENTER_VERTICAL);
 
         LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams((int) SharedService.DipToPixels(mainActivity, 40), (int) SharedService.DipToPixels(mainActivity, 40));
+        layoutParams1.setMargins((int) SharedService.DipToPixels(mainActivity, 50), 0, 0, 0);
         ImageView iv_MImg = new ImageView(mainActivity);
         if (profilePic != null) {
             iv_MImg.setTag(profilePic);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class MyWebViewActivity extends MySharedActivity {
+    public MyWebViewFragment myWebViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,4 +28,9 @@ public class MyWebViewActivity extends MySharedActivity {
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!myWebViewFragment.canGoBack())
+            super.onBackPressed();
+    }
 }

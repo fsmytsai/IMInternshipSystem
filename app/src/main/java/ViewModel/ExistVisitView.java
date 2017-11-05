@@ -9,7 +9,8 @@ import java.util.List;
 public class ExistVisitView {
     public List<ExistVisitCompany> InterviewComList;
     public List<ExistVisitStudent> InterviewStuList;
-    public class ExistVisitCompany{
+
+    public class ExistVisitCompany {
         public int insCId;
         public int SCid;
         public String insCDate;
@@ -27,7 +28,8 @@ public class ExistVisitView {
         public String profilePic;
         public List<VisitCompanyView.Question> questions;
     }
-    public class ExistVisitStudent{
+
+    public class ExistVisitStudent {
         public int insId;
         public int SCid;
         public String insDate;

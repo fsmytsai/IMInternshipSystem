@@ -105,11 +105,11 @@ public class CompanyRegisterFragment extends MySharedFragment {
                         if (StatusCode == 200) {
                             new AlertDialog.Builder(mainActivity)
                                     .setTitle("註冊成功")
-                                    .setMessage("請前往信箱驗證您的Email")
+                                    .setMessage("請等待系辦開通")
                                     .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-//                                            mainActivity.CheckLogon();
+                                            mainActivity.GoLogin(new View(mainActivity));
                                         }
                                     }).show();
                         } else {

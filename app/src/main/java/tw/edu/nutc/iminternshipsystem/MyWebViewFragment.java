@@ -25,13 +25,13 @@ public class MyWebViewFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_web_view, container, false);
         myWebViewActivity = (MyWebViewActivity) getActivity();
+        myWebViewActivity.myWebViewFragment = this;
         LinearLayout ll_Container = (LinearLayout) view.findViewById(R.id.ll_Container);
         String Link = myWebViewActivity.getIntent().getStringExtra("URL");
         if (!Link.contains("http"))
@@ -43,8 +43,6 @@ public class MyWebViewFragment extends Fragment {
                 .setReceivedTitleCallback(new ChromeClientCallbackManager.ReceivedTitleCallback() {
                     @Override
                     public void onReceivedTitle(WebView view, String title) {
-                        if (title.length() > 15)
-                            title = title.substring(0, 14) + "...";
                         myWebViewActivity.SetToolBar(title, true);
                     }
                 })
@@ -71,5 +69,14 @@ public class MyWebViewFragment extends Fragment {
     public void onDestroyView() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroyView();
+    }
+
+    public boolean canGoBack() {
+        if (mAgentWeb.getWebCreator().get().canGoBack()) {
+            mAgentWeb.getWebCreator().get().goBack();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

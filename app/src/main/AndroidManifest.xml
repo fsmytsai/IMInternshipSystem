@@ -40,7 +40,7 @@
         <activity android:name=".MyStudentResumeActivity" />
         <activity android:name=".MailDetailActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".MailActivity" />
+        <activity android:name=".SendMailActivity" />
         <activity android:name=".InviteInterviewActivity" />
         <activity android:name=".StudentReviewActivity" />
         <activity android:name=".ResetPasswordActivity" />

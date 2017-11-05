@@ -26,6 +26,8 @@ public class MailView {
         public boolean read = true;
         public boolean favourite;
         public boolean expired;
+        public String senderPic;
+        public String recipientPic;
 
         public boolean isDelete;
     }

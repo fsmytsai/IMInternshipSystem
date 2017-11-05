@@ -101,16 +101,8 @@
                     android:drawableBottom="@drawable/line"
                     android:drawablePadding="5dp"
                     android:ems="10"
-                    android:hint="校內信箱"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text=" @nutc.edu.tw"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
+                    android:hint="信箱"
+                    android:inputType="textEmailAddress" />
             </LinearLayout>
 
             <EditText
@@ -163,7 +155,7 @@
                 android:drawablePadding="5dp"
                 android:ems="10"
                 android:hint="電話"
-                android:inputType="textPersonName" />
+                android:inputType="phone" />
 
             <LinearLayout
                 android:layout_width="match_parent"

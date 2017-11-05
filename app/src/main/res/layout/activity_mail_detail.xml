@@ -111,7 +111,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,6 +120,13 @@
                 android:text="寄信者 : "
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_SenderImg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/defaultmimg" />
 
             <TextView
                 android:id="@+id/tv_MailSender"
@@ -132,7 +140,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -140,6 +149,13 @@
                 android:text="收信者 : "
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/iv_recipientImg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/defaultmimg" />
 
             <TextView
                 android:id="@+id/tv_MailRecipient"

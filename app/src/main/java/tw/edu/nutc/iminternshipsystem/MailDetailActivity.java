@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,9 @@ public class MailDetailActivity extends MySharedActivity {
     private AutofitTextView atv_MailTitle;
     private TextView tv_MailContent;
     private TextView tv_MailCreateTime;
+    private ImageView iv_SenderImg;
     private TextView tv_MailSender;
+    private ImageView iv_recipientImg;
     private TextView tv_MailRecipient;
 
     @Override
@@ -61,14 +64,24 @@ public class MailDetailActivity extends MySharedActivity {
         atv_MailTitle = (AutofitTextView) findViewById(R.id.atv_MailTitle);
         tv_MailContent = (TextView) findViewById(R.id.tv_MailContent);
         tv_MailCreateTime = (TextView) findViewById(R.id.tv_MailCreateTime);
+        iv_SenderImg = (ImageView) findViewById(R.id.iv_SenderImg);
         tv_MailSender = (TextView) findViewById(R.id.tv_MailSender);
+        iv_recipientImg = (ImageView) findViewById(R.id.iv_recipientImg);
         tv_MailRecipient = (TextView) findViewById(R.id.tv_MailRecipient);
 
         atv_MailTitle.setText(mail.lTitle);
 
         tv_MailContent.setText(mail.lContent);
         tv_MailCreateTime.setText(mail.created_at);
+        if (mail.senderPic != null) {
+            iv_SenderImg.setTag(mail.senderPic);
+            showImage(iv_SenderImg, mail.senderPic, true, null);
+        }
         tv_MailSender.setText(mail.lSenderName);
+        if (mail.recipientPic != null) {
+            iv_recipientImg.setTag(mail.recipientPic);
+            showImage(iv_recipientImg, mail.recipientPic, true, null);
+        }
         tv_MailRecipient.setText(mail.lRecipientName);
 
         if (SharedService.identityView.account.equals(mail.lSender) || mail.lSender.equals("admin123"))
@@ -77,7 +90,7 @@ public class MailDetailActivity extends MySharedActivity {
             findViewById(R.id.ib_ReplyMail).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MailDetailActivity.this, MailActivity.class);
+                    Intent intent = new Intent(MailDetailActivity.this, SendMailActivity.class);
                     intent.putExtra("slId", mail.slId);
                     startActivity(intent);
                 }
@@ -139,7 +152,6 @@ public class MailDetailActivity extends MySharedActivity {
 
                         if (StatusCode != 200) {
                             SharedService.HandleError(StatusCode, ResMsg, MailDetailActivity.this);
-                            finish();
                         } else {
                             setResult(RESULT_OK);
                         }

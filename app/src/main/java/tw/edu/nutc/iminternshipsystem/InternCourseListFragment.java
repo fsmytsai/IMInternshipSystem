@@ -207,7 +207,6 @@ public class InternCourseListFragment extends MySharedFragment {
             }
 
             if (internCourseView.intern_list.get(position).profilePic != null) {
-                holder.iv_CompanyImage.setImageDrawable(null);
                 holder.iv_CompanyImage.setTag(internCourseView.intern_list.get(position).profilePic);
                 showImage(holder.iv_CompanyImage, internCourseView.intern_list.get(position).profilePic, true, null);
             } else {
