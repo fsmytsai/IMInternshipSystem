@@ -19,7 +19,6 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/edittextback"
-            android:ems="10"
             android:inputType="text"
             android:maxLines="1"
             android:padding="5dp"

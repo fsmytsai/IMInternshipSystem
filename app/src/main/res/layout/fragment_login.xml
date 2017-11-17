@@ -42,7 +42,6 @@
                     android:background="@null"
                     android:drawableBottom="@drawable/line"
                     android:drawablePadding="5dp"
-                    android:ems="10"
                     android:hint="請輸入帳號"
                     android:inputType="text" />
 
@@ -54,7 +53,6 @@
                     android:background="@null"
                     android:drawableBottom="@drawable/line"
                     android:drawablePadding="5dp"
-                    android:ems="10"
                     android:hint="請輸入密碼"
                     android:inputType="textPassword" />
             </LinearLayout>

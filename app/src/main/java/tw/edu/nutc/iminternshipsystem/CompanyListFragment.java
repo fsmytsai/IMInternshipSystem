@@ -88,7 +88,7 @@ public class CompanyListFragment extends MySharedFragment {
     }
 
     private void Refresh() {
-
+        mSwipeLayout.setRefreshing(true);
         companyView = new CompanyView();
         //避免重新接上網路時重整導致崩潰
         if (!isFirstLoad) {

@@ -100,9 +100,8 @@
                     android:background="@null"
                     android:drawableBottom="@drawable/line"
                     android:drawablePadding="5dp"
-                    android:ems="10"
-                    android:hint="信箱"
-                    android:inputType="textEmailAddress" />
+                    android:hint="帳號"
+                    android:inputType="text" />
             </LinearLayout>
 
             <EditText
@@ -114,7 +113,6 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/line"
                 android:drawablePadding="5dp"
-                android:ems="10"
                 android:hint="密碼"
                 android:inputType="textPassword" />
 
@@ -127,7 +125,6 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/line"
                 android:drawablePadding="5dp"
-                android:ems="10"
                 android:hint="確認密碼"
                 android:inputType="textPassword" />
 
@@ -140,7 +137,6 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/line"
                 android:drawablePadding="5dp"
-                android:ems="10"
                 android:hint="姓名"
                 android:inputType="textPersonName" />
 
@@ -153,9 +149,20 @@
                 android:background="@null"
                 android:drawableBottom="@drawable/line"
                 android:drawablePadding="5dp"
-                android:ems="10"
                 android:hint="電話"
                 android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/et_Email"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableBottom="@drawable/line"
+                android:drawablePadding="5dp"
+                android:hint="信箱"
+                android:inputType="textEmailAddress" />
 
             <LinearLayout
                 android:layout_width="match_parent"

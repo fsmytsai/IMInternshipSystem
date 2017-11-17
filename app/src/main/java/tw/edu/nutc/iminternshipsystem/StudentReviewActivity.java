@@ -27,7 +27,6 @@ import okhttp3.Response;
 public class StudentReviewActivity extends MySharedActivity {
 
     private JournalView.Review review;
-    private TextView tv_GoogleForm;
     private EditText et_ReviewContent;
 
     @Override
@@ -49,29 +48,18 @@ public class StudentReviewActivity extends MySharedActivity {
 
         activity_Outer = findViewById(R.id.ll_ActivityOuter);
 
-        tv_GoogleForm = (TextView) findViewById(R.id.tv_GoogleForm);
         et_ReviewContent = (EditText) findViewById(R.id.et_ReviewContent);
-
-        tv_GoogleForm.setText(review.googleForm);
-        tv_GoogleForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-
-                intent.setAction("android.intent.action.VIEW");
-
-                Uri content_url = Uri.parse(review.googleForm);
-
-                intent.setData(content_url);
-
-                startActivity(intent);
-            }
-        });
 
         et_ReviewContent.setText(review.reContent);
 
         if (review.reRead)
             et_ReviewContent.setFocusable(false);
+    }
+
+    public void openGoogleForm(View view) {
+        Intent intent = new Intent(this, MyWebViewActivity.class);
+        intent.putExtra("URL", review.googleForm);
+        startActivity(intent);
     }
 
     public void EditReview(View v) {

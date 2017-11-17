@@ -10,15 +10,20 @@
 
     <include layout="@layout/top_section" />
 
-    <ScrollView
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,27 +34,28 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tv_GoogleForm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:text="https://"
+                android:onClick="openGoogleForm"
+                android:text="問卷超連結"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/et_ReviewContent"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittextback"
-                android:gravity="top"
-                android:hint="請輸入實習心得(最少800字)"
-                android:padding="8dp" />
-
         </LinearLayout>
-    </ScrollView>
+
+
+        <EditText
+            android:id="@+id/et_ReviewContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittextback"
+            android:gravity="top"
+            android:hint="請輸入實習心得(最少800字)"
+            android:padding="8dp" />
+
+    </LinearLayout>
+    <!--</ScrollView>-->
 
     <ImageView
         android:layout_width="60dp"

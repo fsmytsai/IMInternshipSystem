@@ -94,7 +94,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -121,7 +120,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -148,7 +146,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -201,7 +198,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -228,7 +224,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
@@ -255,7 +250,6 @@
                         android:background="@null"
                         android:drawableBottom="@drawable/line"
                         android:drawablePadding="5dp"
-                        android:ems="10"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>

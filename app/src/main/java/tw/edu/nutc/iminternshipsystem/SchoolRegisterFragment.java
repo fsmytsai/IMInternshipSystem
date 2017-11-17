@@ -32,6 +32,7 @@ public class SchoolRegisterFragment extends MySharedFragment {
     private EditText et_PasswordCheck;
     private EditText et_Name;
     private EditText et_Phone;
+    private EditText et_Email;
 
     private MainActivity mainActivity;
     private Spinner sp_Status;
@@ -60,6 +61,8 @@ public class SchoolRegisterFragment extends MySharedFragment {
         et_PasswordCheck = (EditText) view.findViewById(R.id.et_PasswordCheck);
         et_Name = (EditText) view.findViewById(R.id.et_Name);
         et_Phone = (EditText) view.findViewById(R.id.et_Phone);
+        et_Email = (EditText) view.findViewById(R.id.et_Email);
+
         view.findViewById(R.id.bt_Register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +88,7 @@ public class SchoolRegisterFragment extends MySharedFragment {
                 .add("account", et_Account.getText().toString())
                 .add("u_name", et_Name.getText().toString())
                 .add("u_tel", et_Phone.getText().toString())
+                .add("email", et_Email.getText().toString())
                 .add("password", et_Password.getText().toString())
                 .add("conf_pass", et_PasswordCheck.getText().toString())
                 .add("u_status", sp_Status.getSelectedItemPosition() + "")
@@ -94,6 +98,7 @@ public class SchoolRegisterFragment extends MySharedFragment {
                 .url(getString(R.string.BackEndPath) + "api/Register")
                 .post(formBody)
                 .build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
