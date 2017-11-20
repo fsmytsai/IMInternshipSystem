@@ -179,6 +179,7 @@ public class MyStudentListFragment extends MySharedFragment {
 
                     MenuItem menuItem4 = new MenuItem();
                     menuItem4.setText("訪視管理");
+                    menuItem4.setStyle(MenuItem.MenuItemStyle.COMMON);
                     menuItem4.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
                         @Override
                         public void onClickMenuItem(View v, MenuItem menuItem) {
