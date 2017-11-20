@@ -11,4 +11,7 @@
 
     <string name="FrontEndPath">http://tsaiweb.southeastasia.cloudapp.azure.com/aa9453aa/#Page=</string>
     <string name="BackEndPath">http://tsaiweb.southeastasia.cloudapp.azure.com/jamie/public/</string>
+
+    <string name="PrimaryKey">cbe7c0318f254becb0e76ed784c414c8</string>
+    <string name="AuthenticationUri">https://api.cognitive.microsoft.com/sts/v1.0/issueToken</string>
 </resources>

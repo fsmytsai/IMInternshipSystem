@@ -346,7 +346,6 @@ public class CompanyDetailActivity extends MySharedActivity {
                 return new ViewHolder(mFooterView);
             }
 
-
             View view = LayoutInflater.from(context).inflate(R.layout.alljob_detailblock, parent, false);
 
             return new ViewHolder(view);
@@ -364,12 +363,12 @@ public class CompanyDetailActivity extends MySharedActivity {
                 }
 
                 holder.tv_CompanyName.setText(company.c_name);
-                holder.tv_CompanyType.setText(company.ctypes != null ? company.ctypes : "尚未填寫");
-                holder.tv_CompanyAddress.setText(company.caddress != null ? company.caddress : "尚未填寫");
-                holder.tv_CompanyFax.setText(company.cfax != null ? company.cfax : "尚未填寫");
+                holder.tv_CompanyType.setText(company.ctypes != null && company.ctypes != "" ? company.ctypes : "尚未填寫");
+                holder.tv_CompanyAddress.setText(company.caddress != null && company.caddress != "" ? company.caddress : "尚未填寫");
+                holder.tv_CompanyFax.setText(company.cfax != null && company.cfax != "" ? company.cfax : "尚未填寫");
                 holder.tv_CompanyEmpolyeeNum.setText(company.cempolyee_num + "");
                 holder.tv_CompanyTel.setText(company.tel);
-                holder.tv_CompanyIntro.setText(company.cintroduction != null ? company.cintroduction : "簡介尚未填寫");
+                holder.tv_CompanyIntro.setText(company.cintroduction != null && company.cintroduction != "" ? company.cintroduction : "簡介尚未填寫");
 
                 if (company.introductionPic != null) {
                     if (isFirstLoadVR) {

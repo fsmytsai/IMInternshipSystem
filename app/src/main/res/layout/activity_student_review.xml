@@ -10,10 +10,6 @@
 
     <include layout="@layout/top_section" />
 
-    <!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,14 +51,23 @@
             android:padding="8dp" />
 
     </LinearLayout>
-    <!--</ScrollView>-->
+
+    <ImageView
+        android:id="@+id/iv_Record"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-140dp"
+        android:background="@color/colorTransparent"
+        android:onClick="StartRecord"
+        app:srcCompat="@drawable/record" />
 
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="-80dp"
         android:background="@color/colorTransparent"
         android:onClick="EditReview"
         app:srcCompat="@drawable/saveall" />

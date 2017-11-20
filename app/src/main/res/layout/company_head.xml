@@ -32,9 +32,10 @@
         <TextView
             android:id="@+id/tv_CompanyName"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -58,9 +59,10 @@
         <TextView
             android:id="@+id/tv_CompanyType"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -84,9 +86,10 @@
         <TextView
             android:id="@+id/tv_CompanyAddress"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -109,9 +112,10 @@
         <TextView
             android:id="@+id/tv_CompanyFax"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -135,9 +139,10 @@
         <TextView
             android:id="@+id/tv_CompanyEmpolyeeNum"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -161,9 +166,10 @@
         <TextView
             android:id="@+id/tv_CompanyTel"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
+            android:minHeight="40dp"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -178,7 +184,7 @@
 
     <com.google.vr.sdk.widgets.pano.VrPanoramaView
         android:id="@+id/vpv_CompanyImage"
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="250dp"
+        android:layout_margin="15dp" />
 </LinearLayout>

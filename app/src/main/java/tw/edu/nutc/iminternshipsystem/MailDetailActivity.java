@@ -70,7 +70,7 @@ public class MailDetailActivity extends MySharedActivity {
         tv_MailRecipient = (TextView) findViewById(R.id.tv_MailRecipient);
 
         atv_MailTitle.setText(mail.lTitle);
-
+        mail.lContent = mail.lContent.replace("\\n","\n");
         tv_MailContent.setText(mail.lContent);
         tv_MailCreateTime.setText(mail.created_at);
         if (mail.senderPic != null) {
