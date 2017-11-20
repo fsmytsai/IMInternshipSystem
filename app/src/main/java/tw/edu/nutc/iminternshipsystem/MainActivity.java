@@ -686,7 +686,7 @@ public class MainActivity extends MySharedActivity {
                     GoProcessResume(new View(this));
                 } else if (MailStatus == 11) {
                     drawer.closeDrawer(GravityCompat.END);
-                    GoMyStudent(new View(this));
+                    GoStudentManagement(new View(this));
                 }
             } else {
                 mailView.data.get(nowPosition).read = true;
@@ -999,10 +999,10 @@ public class MainActivity extends MySharedActivity {
             return new EditCompanyFragment();
         else if (FragmentName.equals("InternCourseListFragment"))
             return new InternCourseListFragment();
-        else if (FragmentName.equals("VisitCourseListFragment"))
-            return new VisitCourseListFragment();
-        else if (FragmentName.equals("MyStudentListFragment"))
-            return new MyStudentListFragment();
+        else if (FragmentName.equals("StudentManagementFragment"))
+            return new StudentManagementFragment();
+//        else if (FragmentName.equals("MyStudentListFragment")) 棄用
+//            return new MyStudentListFragment();
         else if (FragmentName.equals("EditTeacherPicFragment"))
             return new EditTeacherPicFragment();
         else if (FragmentName.equals("ProcessResumeFragment"))
@@ -1163,33 +1163,34 @@ public class MainActivity extends MySharedActivity {
         }
     }
 
-    public void GoVisit(View v) {
+    public void GoStudentManagement(View v) {
         drawer.closeDrawer(GravityCompat.START);
-        if (getSupportFragmentManager().findFragmentByTag("VisitCourseListFragment") == null) {
-            if (contentFragmentList.contains("VisitCourseListFragment")) {
-                contentFragmentList.remove("VisitCourseListFragment");
+        if (getSupportFragmentManager().findFragmentByTag("StudentManagementFragment") == null) {
+            if (contentFragmentList.contains("StudentManagementFragment")) {
+                contentFragmentList.remove("StudentManagementFragment");
             }
-            contentFragmentList.add("VisitCourseListFragment");
+            contentFragmentList.add("StudentManagementFragment");
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.MainFrameLayout, new VisitCourseListFragment(), "VisitCourseListFragment")
+                    .replace(R.id.MainFrameLayout, new StudentManagementFragment(), "StudentManagementFragment")
                     .commit();
         }
     }
 
-    public void GoMyStudent(View v) {
-        drawer.closeDrawer(GravityCompat.START);
-        if (getSupportFragmentManager().findFragmentByTag("MyStudentListFragment") == null) {
-            if (contentFragmentList.contains("MyStudentListFragment")) {
-                contentFragmentList.remove("MyStudentListFragment");
-            }
-            contentFragmentList.add("MyStudentListFragment");
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.MainFrameLayout, new MyStudentListFragment(), "MyStudentListFragment")
-                    .commit();
-        }
-    }
+    //棄用
+//    public void GoMyStudent(View v) {
+//        drawer.closeDrawer(GravityCompat.START);
+//        if (getSupportFragmentManager().findFragmentByTag("MyStudentListFragment") == null) {
+//            if (contentFragmentList.contains("MyStudentListFragment")) {
+//                contentFragmentList.remove("MyStudentListFragment");
+//            }
+//            contentFragmentList.add("MyStudentListFragment");
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.MainFrameLayout, new MyStudentListFragment(), "MyStudentListFragment")
+//                    .commit();
+//        }
+//    }
 
     public void GoEditTeacherPic(View v) {
         drawer.closeDrawer(GravityCompat.START);

@@ -25,6 +25,7 @@ public class VisitCourseView {
 
     public class Student {
         public int SCid;
+        public int sid;
         public String stuName;
         public String stuAccount;
         public String profilePic;

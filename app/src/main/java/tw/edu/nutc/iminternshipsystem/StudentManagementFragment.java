@@ -21,8 +21,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.tsaiweb.bottompopmenu.BottomMenuFragment;
+import com.tsaiweb.bottompopmenu.MenuItem;
+import com.tsaiweb.bottompopmenu.MenuItemOnClickListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import MyMethod.IMyImgCallBack;
 import MyMethod.SharedService;
@@ -37,7 +42,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VisitCourseListFragment extends MySharedFragment {
+public class StudentManagementFragment extends MySharedFragment {
 
     private MainActivity mainActivity;
     private SwipeRefreshLayout mSwipeLayout;
@@ -51,7 +56,7 @@ public class VisitCourseListFragment extends MySharedFragment {
 
     private boolean isLoadingImages = false;
 
-    public VisitCourseListFragment() {
+    public StudentManagementFragment() {
         // Required empty public constructor
     }
 
@@ -60,7 +65,7 @@ public class VisitCourseListFragment extends MySharedFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_visit_course_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_student_management, container, false);
         mainActivity = (MainActivity) getActivity();
         super.activity = mainActivity;
         super.client = mainActivity.client;
@@ -105,11 +110,11 @@ public class VisitCourseListFragment extends MySharedFragment {
             visitCourseListAdapter.mFooterId = 0;
             visitCourseListAdapter.notifyDataSetChanged();
         }
-        GetVisitCourseList();
+        GetCourseList();
     }
 
 
-    private void GetVisitCourseList() {
+    private void GetCourseList() {
         Request request = new Request.Builder()
                 .url(getString(R.string.BackEndPath) + "api/getCourseList")
                 .build();
@@ -213,18 +218,19 @@ public class VisitCourseListFragment extends MySharedFragment {
             if (visitCourseView.CourseList.get(position).IsOpen) {
                 holder.ll_StudentListBlock.setVisibility(View.VISIBLE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.up);
-                for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
-                    LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
-                    ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-                            intent.putExtra("SCid", student.SCid);
-                            startActivity(intent);
-                        }
-                    });
-                    holder.ll_StudentListBlock.addView(ll_StudentBlock);
-                }
+                FillStudentListBlock(position,holder.ll_StudentListBlock);
+//                for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
+//                    LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
+//                    ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
+//                            intent.putExtra("SCid", student.SCid);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    holder.ll_StudentListBlock.addView(ll_StudentBlock);
+//                }
             } else {
                 holder.ll_StudentListBlock.setVisibility(View.GONE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.down);
@@ -250,18 +256,19 @@ public class VisitCourseListFragment extends MySharedFragment {
                         visitCourseView.CourseList.get(position).IsOpen = true;
                         if (visitCourseView.CourseList.get(position).IsFill) {
                             holder.ll_StudentListBlock.removeAllViews();
-                            for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
-                                LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
-                                ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-                                        intent.putExtra("SCid", student.SCid);
-                                        startActivity(intent);
-                                    }
-                                });
-                                holder.ll_StudentListBlock.addView(ll_StudentBlock);
-                            }
+                            FillStudentListBlock(position,holder.ll_StudentListBlock);
+//                            for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
+//                                LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
+//                                ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
+//                                        intent.putExtra("SCid", student.SCid);
+//                                        startActivity(intent);
+//                                    }
+//                                });
+//                                holder.ll_StudentListBlock.addView(ll_StudentBlock);
+//                            }
                             holder.iv_UpAndDown.setImageResource(R.drawable.up);
                             holder.ll_StudentListBlock.setVisibility(View.VISIBLE);
                             holder.ll_StudentListBlock.animate()
@@ -280,7 +287,7 @@ public class VisitCourseListFragment extends MySharedFragment {
                                 isLoadingImages = true;
                                 holder.iv_UpAndDown.setVisibility(View.GONE);
                                 holder.pb_Loading.setVisibility(View.VISIBLE);
-                                GetStudentListBlock(position, holder.ll_StudentListBlock, holder.iv_UpAndDown, holder.pb_Loading);
+                                FirstFillStudentListBlock(position, holder.ll_StudentListBlock, holder.iv_UpAndDown, holder.pb_Loading);
                             } else {
                                 SharedService.ShowTextToast("請稍後再試", mainActivity);
                             }
@@ -323,7 +330,15 @@ public class VisitCourseListFragment extends MySharedFragment {
         }
     }
 
-    private void GetStudentListBlock(final int Position, final LinearLayout ll_StudentListBlock, final ImageView iv_UpAndDown, final ProgressBar pb_Loading) {
+    private void FillStudentListBlock(final int Position, final LinearLayout ll_StudentListBlock){
+        for (final VisitCourseView.Student student : visitCourseView.CourseList.get(Position).studentList) {
+            LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
+            ll_StudentBlock.setOnClickListener(new ClickStudentBlock(student));
+            ll_StudentListBlock.addView(ll_StudentBlock);
+        }
+    }
+
+    private void FirstFillStudentListBlock(final int Position, final LinearLayout ll_StudentListBlock, final ImageView iv_UpAndDown, final ProgressBar pb_Loading) {
         int ImageCount = 0;
         for (VisitCourseView.Student student : visitCourseView.CourseList.get(Position).studentList) {
             if (student.profilePic != null)
@@ -332,14 +347,8 @@ public class VisitCourseListFragment extends MySharedFragment {
         MyImgCallback myImgCallback = new MyImgCallback(ImageCount, Position, ll_StudentListBlock, iv_UpAndDown, pb_Loading);
         for (final VisitCourseView.Student student : visitCourseView.CourseList.get(Position).studentList) {
             LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, myImgCallback);
-            ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-                    intent.putExtra("SCid", student.SCid);
-                    startActivity(intent);
-                }
-            });
+            ll_StudentBlock.setOnClickListener(new ClickStudentBlock(student));
+
             ll_StudentListBlock.addView(ll_StudentBlock);
         }
     }
@@ -405,6 +414,79 @@ public class VisitCourseListFragment extends MySharedFragment {
                 isLoadingImages = false;
             }
 
+        }
+    }
+
+    private class ClickStudentBlock implements View.OnClickListener {
+        private VisitCourseView.Student student;
+
+        public ClickStudentBlock(VisitCourseView.Student student){
+            this.student = student;
+        }
+
+        @Override
+        public void onClick(View v) {
+            BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
+
+            List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+
+            MenuItem menuItem1 = new MenuItem();
+            menuItem1.setText("查看履歷");
+            menuItem1.setStyle(MenuItem.MenuItemStyle.COMMON);
+            menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    Intent intent = new Intent(mainActivity, MyStudentResumeActivity.class);
+                    intent.putExtra("Sid", student.sid);
+                    intent.putExtra("StudentName", student.stuName);
+                    startActivity(intent);
+                }
+            });
+
+            MenuItem menuItem2 = new MenuItem();
+            menuItem2.setText("週誌管理");
+            menuItem2.setStyle(MenuItem.MenuItemStyle.COMMON);
+            menuItem2.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                    intent.putExtra("URL", getString(R.string.FrontEndPath) + "weekly&SCId=" + student.SCid + "&Token=" + SharedService.token);
+                    startActivity(intent);
+                }
+            });
+
+            MenuItem menuItem3 = new MenuItem();
+            menuItem3.setText("成績管理");
+            menuItem3.setStyle(MenuItem.MenuItemStyle.COMMON);
+            menuItem3.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                    intent.putExtra("URL", getString(R.string.FrontEndPath) + "grade_tea&SCId=" + student.SCid + "&Token=" + SharedService.token);
+                    startActivity(intent);
+                }
+            });
+
+            MenuItem menuItem4 = new MenuItem();
+            menuItem4.setText("訪視管理");
+            menuItem4.setStyle(MenuItem.MenuItemStyle.COMMON);
+            menuItem4.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                @Override
+                public void onClickMenuItem(View v, MenuItem menuItem) {
+                    Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
+                    intent.putExtra("SCid", student.SCid);
+                    startActivity(intent);
+                }
+            });
+
+            menuItemList.add(menuItem1);
+            menuItemList.add(menuItem2);
+            menuItemList.add(menuItem3);
+            menuItemList.add(menuItem4);
+
+            bottomMenuFragment.setMenuItems(menuItemList);
+
+            bottomMenuFragment.show(getFragmentManager(), "BottomMenuFragment");
         }
     }
 }
