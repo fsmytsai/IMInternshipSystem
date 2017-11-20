@@ -124,14 +124,70 @@ public class LoginFragment extends MySharedFragment {
                             mainActivity.CheckLogon();
                             SharedService.ShowTextToast("登入成功", mainActivity);
                         } else {
-                            et_Password.setText("");
-                            SharedService.HandleError(StatusCode, ResMsg, mainActivity);
+                            if (ResMsg.contains("帳號未開通")) {
+                                new AlertDialog.Builder(mainActivity)
+                                        .setTitle("帳號未開通")
+                                        .setMessage("請前往信箱收取驗證信")
+                                        .setNegativeButton("重寄驗證信", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                et_Password.setText("");
+                                                ReSendEmail();
+                                            }
+                                        })
+                                        .setPositiveButton("知道了", null)
+                                        .show();
+                            } else {
+                                et_Password.setText("");
+                                SharedService.HandleError(StatusCode, ResMsg, mainActivity);
+                            }
+
                         }
                     }
                 });
             }
         });
 
+    }
+
+    private void ReSendEmail(){
+        RequestBody formBody = new FormBody.Builder()
+                .add("account", account)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(getString(R.string.BackEndPath) + "api/resendVerificationLetter")
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedService.ShowTextToast("請檢察網路連線", mainActivity);
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final int StatusCode = response.code();
+                final String ResMsg = response.body().string();
+
+                mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (StatusCode == 200) {
+                            SharedService.ShowTextToast("寄出成功", mainActivity);
+                        } else {
+                            SharedService.HandleError(StatusCode, ResMsg, mainActivity);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void ForgetPassword() {

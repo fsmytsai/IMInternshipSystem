@@ -2,20 +2,28 @@ package tw.edu.nutc.iminternshipsystem;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.tsaiweb.bottompopmenu.BottomMenuFragment;
+import com.tsaiweb.bottompopmenu.MenuItem;
+import com.tsaiweb.bottompopmenu.MenuItemOnClickListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import MyMethod.SharedService;
 import ViewModel.MyStudentView;
@@ -132,10 +140,60 @@ public class MyStudentListFragment extends MySharedFragment {
             holder.ll_MyStudent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mainActivity, MyStudentResumeActivity.class);
-                    intent.putExtra("Sid", myStudentView.student_list.get(position).id);
-                    intent.putExtra("StudentName", myStudentView.student_list.get(position).u_name);
-                    startActivity(intent);
+                    BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
+
+                    List<MenuItem> menuItemList = new ArrayList<MenuItem>();
+
+                    MenuItem menuItem1 = new MenuItem();
+                    menuItem1.setText("查看履歷");
+                    menuItem1.setStyle(MenuItem.MenuItemStyle.COMMON);
+                    menuItem1.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+                            Intent intent = new Intent(mainActivity, MyStudentResumeActivity.class);
+                            intent.putExtra("Sid", myStudentView.student_list.get(position).id);
+                            intent.putExtra("StudentName", myStudentView.student_list.get(position).u_name);
+                            startActivity(intent);
+                        }
+                    });
+
+                    MenuItem menuItem2 = new MenuItem();
+                    menuItem2.setText("週誌管理");
+                    menuItem2.setStyle(MenuItem.MenuItemStyle.COMMON);
+                    menuItem2.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+
+                        }
+                    });
+
+                    MenuItem menuItem3 = new MenuItem();
+                    menuItem3.setText("成績管理");
+                    menuItem3.setStyle(MenuItem.MenuItemStyle.COMMON);
+                    menuItem3.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+
+                        }
+                    });
+
+                    MenuItem menuItem4 = new MenuItem();
+                    menuItem4.setText("訪視管理");
+                    menuItem4.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                        @Override
+                        public void onClickMenuItem(View v, MenuItem menuItem) {
+
+                        }
+                    });
+
+                    menuItemList.add(menuItem1);
+                    menuItemList.add(menuItem2);
+                    menuItemList.add(menuItem3);
+                    menuItemList.add(menuItem4);
+
+                    bottomMenuFragment.setMenuItems(menuItemList);
+
+                    bottomMenuFragment.show(getFragmentManager(), "BottomMenuFragment");
                 }
             });
         }

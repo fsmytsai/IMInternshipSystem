@@ -31,7 +31,6 @@ public class MyStudentResumeActivity extends MySharedActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_student_resume);
         GetResumeData();
-
     }
 
     @Override

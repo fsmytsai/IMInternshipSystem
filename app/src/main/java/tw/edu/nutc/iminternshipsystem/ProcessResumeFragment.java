@@ -178,7 +178,6 @@ public class ProcessResumeFragment extends MySharedFragment {
                         }
                     });
 
-
                     MenuItem menuItem3 = new MenuItem();
                     menuItem3.setText("直接錄取");
                     menuItem3.setStyle(MenuItem.MenuItemStyle.COMMON);

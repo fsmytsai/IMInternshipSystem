@@ -40,7 +40,7 @@ public class StudentAbilityFragment extends MySharedFragment {
 
     public RecyclerView rv_StudentAbilityList;
     private StudentAbilityListAdapter studentAbilityListAdapter;
-    private String[] AbilityTypes = {"大數據", "伺服器架設", "資料庫", "後端程式設計", "前端程式設計", "多媒體", "文書處理"};
+    private String[] AbilityTypes = {"大數據", "物聯網", "伺服器架設", "資料庫", "後端程式設計", "前端程式設計", "多媒體", "文書處理"};
     private ResumeView resumeView;
 
     public StudentAbilityFragment() {
