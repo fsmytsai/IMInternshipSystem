@@ -41,6 +41,8 @@ public class EditTeacherPicFragment extends MySharedFragment {
     private MainActivity mainActivity;
     private ImageView iv_MImg;
 
+    private LoadImgAsyncTask loadImgAsyncTask;
+
     private final int REQUEST_EXTERNAL_STORAGE = 18;
     private FileChooser fileChooser;
     private File mImg = null;
@@ -62,14 +64,23 @@ public class EditTeacherPicFragment extends MySharedFragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        if (loadImgAsyncTask != null) {
+            loadImgAsyncTask.cancel(true);
+        }
+        super.onDestroyView();
+    }
+
     private void initViews(final View view) {
         SetToolBar("", view);
         iv_MImg = (ImageView) view.findViewById(R.id.iv_MImg);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) (mainActivity.myWidth * 0.7), (int) (mainActivity.myWidth * 0.7));
         iv_MImg.setLayoutParams(layoutParams);
-        if (SharedService.identityView.profilePic != null)
-            new LoadImgAsyncTask(iv_MImg, SharedService.identityView.profilePic).execute();
-        else {
+        if (SharedService.identityView.profilePic != null) {
+            loadImgAsyncTask = new LoadImgAsyncTask(iv_MImg, SharedService.identityView.profilePic);
+            loadImgAsyncTask.execute();
+        } else {
             Drawable[] layers = new Drawable[2];
             layers[0] = ContextCompat.getDrawable(mainActivity, R.drawable.defaultmimg);
             layers[1] = ContextCompat.getDrawable(mainActivity, R.drawable.editmimg);

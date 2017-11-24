@@ -34,13 +34,13 @@
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <ImageView
-            android:id="@+id/iv_ToTop"
+            android:id="@+id/iv_AddJob"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="30dp"
             android:background="@color/colorTransparent"
-            app:srcCompat="@drawable/totop" />
+            app:srcCompat="@drawable/add" />
 
     </android.support.design.widget.CoordinatorLayout>
 

@@ -261,6 +261,5 @@ public class MySharedFragment extends Fragment {
             LayerDrawable layerDrawable = new LayerDrawable(layers);
             imageView.setImageDrawable(layerDrawable);
         }
-
     }
 }

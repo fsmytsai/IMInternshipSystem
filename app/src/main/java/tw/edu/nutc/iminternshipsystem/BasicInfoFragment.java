@@ -76,6 +76,8 @@ public class BasicInfoFragment extends MySharedFragment {
 
     private DatePickerDialog datePickerDialog;
 
+    private LoadImgAsyncTask loadImgAsyncTask;
+
     private final int REQUEST_EXTERNAL_STORAGE = 18;
     private FileChooser fileChooser;
     private File mImg = null;
@@ -95,6 +97,14 @@ public class BasicInfoFragment extends MySharedFragment {
         super.activity = mainActivity;
         initViews(view);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (loadImgAsyncTask != null) {
+            loadImgAsyncTask.cancel(true);
+        }
+        super.onDestroyView();
     }
 
     private void initViews(final View view) {
@@ -237,8 +247,10 @@ public class BasicInfoFragment extends MySharedFragment {
     }
 
     public void DrawData(ResumeView resumeView) {
-        if (resumeView.stu_basic.profilePic != null)
-            new LoadImgAsyncTask(iv_MImg, resumeView.stu_basic.profilePic).execute();
+        if (resumeView.stu_basic.profilePic != null) {
+            loadImgAsyncTask = new LoadImgAsyncTask(iv_MImg, resumeView.stu_basic.profilePic);
+            loadImgAsyncTask.execute();
+        }
 
         et_ChName.setText(resumeView.stu_basic.chiName);
         et_EgName.setText(resumeView.stu_basic.engName);
@@ -476,8 +488,6 @@ public class BasicInfoFragment extends MySharedFragment {
                 });
             }
         });
-
-
     }
 
 }

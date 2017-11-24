@@ -390,9 +390,9 @@ public class MailDetailActivity extends MySharedActivity {
         finish();
     }
 
-    public void GoManageStudent(View view) {
+    public void GoWeekly(View view) {
         Intent intent = new Intent(this, MyWebViewActivity.class);
-        intent.putExtra("URL", getString(R.string.FrontEndPath) + "studentManagement&courseid=" + mail.lNotes + "&Token=" + SharedService.token);
+        intent.putExtra("URL", getString(R.string.FrontEndPath) + "weekly&SCId=" + mail.lNotes + "&Token=" + SharedService.token);
         startActivity(intent);
     }
 }

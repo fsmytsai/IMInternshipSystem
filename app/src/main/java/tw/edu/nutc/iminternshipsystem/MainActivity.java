@@ -903,6 +903,8 @@ public class MainActivity extends MySharedActivity {
             if (SharedService.identityView.profilePic != null) {
                 civ_StudentImage.setTag(SharedService.identityView.profilePic);
                 showImage(civ_StudentImage, SharedService.identityView.profilePic, true, null);
+            } else {
+                civ_StudentImage.setImageResource(R.drawable.defaultmimg);
             }
             tv_StudentName.setText(SharedService.identityView.u_name);
         } else if (SharedService.identityView.u_status == 1) {
@@ -915,6 +917,8 @@ public class MainActivity extends MySharedActivity {
             if (SharedService.identityView.profilePic != null) {
                 civ_TeacherImage.setTag(SharedService.identityView.profilePic);
                 showImage(civ_TeacherImage, SharedService.identityView.profilePic, true, null);
+            } else {
+                civ_StudentImage.setImageResource(R.drawable.defaultmimg);
             }
             tv_TeacherName.setText(SharedService.identityView.u_name);
         } else if (SharedService.identityView.u_status == 2) {
@@ -927,6 +931,8 @@ public class MainActivity extends MySharedActivity {
             if (SharedService.identityView.profilePic != null) {
                 civ_CompanyImage.setTag(SharedService.identityView.profilePic);
                 showImage(civ_CompanyImage, SharedService.identityView.profilePic, true, null);
+            } else {
+                civ_StudentImage.setImageResource(R.drawable.defaultmimg);
             }
             tv_CompanyName.setText(SharedService.identityView.u_name);
         }
@@ -957,6 +963,11 @@ public class MainActivity extends MySharedActivity {
                     }
                 }, 1500);
             } else {
+                if (client != null) {
+                    client.dispatcher().cancelAll();
+                    wImageViewList = new ArrayList<>();
+                    loadingImgNameList = new ArrayList<>();
+                }
                 contentFragmentList.remove(contentFragmentList.size() - 1);
                 if (contentFragmentList.size() == 0) {
                     getSupportFragmentManager()
@@ -1161,6 +1172,13 @@ public class MainActivity extends MySharedActivity {
                     .replace(R.id.MainFrameLayout, new InternCourseListFragment(), "InternCourseListFragment")
                     .commit();
         }
+    }
+
+    public void GoWebInternCourse(View v) {
+        drawer.closeDrawer(GravityCompat.START);
+        Intent intent = new Intent(this, MyWebViewActivity.class);
+        intent.putExtra("URL", getString(R.string.FrontEndPath) + "courselist_stu&Token=" + SharedService.token);
+        startActivity(intent);
     }
 
     public void GoStudentManagement(View v) {

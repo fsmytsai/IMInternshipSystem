@@ -218,19 +218,7 @@ public class StudentManagementFragment extends MySharedFragment {
             if (visitCourseView.CourseList.get(position).IsOpen) {
                 holder.ll_StudentListBlock.setVisibility(View.VISIBLE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.up);
-                FillStudentListBlock(position,holder.ll_StudentListBlock);
-//                for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
-//                    LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
-//                    ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-//                            intent.putExtra("SCid", student.SCid);
-//                            startActivity(intent);
-//                        }
-//                    });
-//                    holder.ll_StudentListBlock.addView(ll_StudentBlock);
-//                }
+                FillStudentListBlock(position, holder.ll_StudentListBlock);
             } else {
                 holder.ll_StudentListBlock.setVisibility(View.GONE);
                 holder.iv_UpAndDown.setImageResource(R.drawable.down);
@@ -256,19 +244,7 @@ public class StudentManagementFragment extends MySharedFragment {
                         visitCourseView.CourseList.get(position).IsOpen = true;
                         if (visitCourseView.CourseList.get(position).IsFill) {
                             holder.ll_StudentListBlock.removeAllViews();
-                            FillStudentListBlock(position,holder.ll_StudentListBlock);
-//                            for (final VisitCourseView.Student student : visitCourseView.CourseList.get(position).studentList) {
-//                                LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
-//                                ll_StudentBlock.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-//                                        intent.putExtra("SCid", student.SCid);
-//                                        startActivity(intent);
-//                                    }
-//                                });
-//                                holder.ll_StudentListBlock.addView(ll_StudentBlock);
-//                            }
+                            FillStudentListBlock(position, holder.ll_StudentListBlock);
                             holder.iv_UpAndDown.setImageResource(R.drawable.up);
                             holder.ll_StudentListBlock.setVisibility(View.VISIBLE);
                             holder.ll_StudentListBlock.animate()
@@ -330,7 +306,7 @@ public class StudentManagementFragment extends MySharedFragment {
         }
     }
 
-    private void FillStudentListBlock(final int Position, final LinearLayout ll_StudentListBlock){
+    private void FillStudentListBlock(final int Position, final LinearLayout ll_StudentListBlock) {
         for (final VisitCourseView.Student student : visitCourseView.CourseList.get(Position).studentList) {
             LinearLayout ll_StudentBlock = GetStudentBlock(student.stuName, student.profilePic, null);
             ll_StudentBlock.setOnClickListener(new ClickStudentBlock(student));
@@ -420,7 +396,7 @@ public class StudentManagementFragment extends MySharedFragment {
     private class ClickStudentBlock implements View.OnClickListener {
         private VisitCourseView.Student student;
 
-        public ClickStudentBlock(VisitCourseView.Student student){
+        public ClickStudentBlock(VisitCourseView.Student student) {
             this.student = student;
         }
 
@@ -443,6 +419,8 @@ public class StudentManagementFragment extends MySharedFragment {
                 }
             });
 
+            menuItemList.add(menuItem1);
+
             MenuItem menuItem2 = new MenuItem();
             menuItem2.setText("週誌管理");
             menuItem2.setStyle(MenuItem.MenuItemStyle.COMMON);
@@ -454,6 +432,8 @@ public class StudentManagementFragment extends MySharedFragment {
                     startActivity(intent);
                 }
             });
+
+            menuItemList.add(menuItem2);
 
             MenuItem menuItem3 = new MenuItem();
             menuItem3.setText("成績管理");
@@ -467,22 +447,23 @@ public class StudentManagementFragment extends MySharedFragment {
                 }
             });
 
-            MenuItem menuItem4 = new MenuItem();
-            menuItem4.setText("訪視管理");
-            menuItem4.setStyle(MenuItem.MenuItemStyle.COMMON);
-            menuItem4.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
-                @Override
-                public void onClickMenuItem(View v, MenuItem menuItem) {
-                    Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
-                    intent.putExtra("SCid", student.SCid);
-                    startActivity(intent);
-                }
-            });
-
-            menuItemList.add(menuItem1);
-            menuItemList.add(menuItem2);
             menuItemList.add(menuItem3);
-            menuItemList.add(menuItem4);
+
+            if (SharedService.identityView.u_status == 1) {
+                MenuItem menuItem4 = new MenuItem();
+                menuItem4.setText("訪視管理");
+                menuItem4.setStyle(MenuItem.MenuItemStyle.COMMON);
+                menuItem4.setMenuItemOnClickListener(new MenuItemOnClickListener(bottomMenuFragment, menuItem1) {
+                    @Override
+                    public void onClickMenuItem(View v, MenuItem menuItem) {
+                        Intent intent = new Intent(mainActivity, VisitRecordActivity.class);
+                        intent.putExtra("SCid", student.SCid);
+                        startActivity(intent);
+                    }
+                });
+
+                menuItemList.add(menuItem4);
+            }
 
             bottomMenuFragment.setMenuItems(menuItemList);
 

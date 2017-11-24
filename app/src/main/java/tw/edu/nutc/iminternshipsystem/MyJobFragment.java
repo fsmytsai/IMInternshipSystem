@@ -53,7 +53,7 @@ public class MyJobFragment extends MySharedFragment {
     private MyJobListAdapter myJobListAdapter;
 
     private int nowPosition = -1;
-    private ImageView iv_ToTop;
+    private ImageView iv_AddJob;
 
     public MyJobFragment() {
         // Required empty public constructor
@@ -95,11 +95,13 @@ public class MyJobFragment extends MySharedFragment {
         mSwipeLayout.setDistanceToTriggerSync(400);// 设置手指在屏幕下拉多少距离会触发下拉刷新
         mSwipeLayout.setSize(SwipeRefreshLayout.DEFAULT);
 
-        iv_ToTop = (ImageView) view.findViewById(R.id.iv_ToTop);
-        iv_ToTop.setOnClickListener(new View.OnClickListener() {
+        iv_AddJob = (ImageView) view.findViewById(R.id.iv_AddJob);
+        iv_AddJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rv_MyJobList.smoothScrollToPosition(0);
+                Intent intent = new Intent(mainActivity, MyWebViewActivity.class);
+                intent.putExtra("URL", getString(R.string.FrontEndPath) + "jobadd_ent&Token=" + SharedService.token);
+                startActivity(intent);
             }
         });
     }
@@ -206,8 +208,8 @@ public class MyJobFragment extends MySharedFragment {
 
                     if (dy < 0) {
                         if (!isAnimatingOut) {
-                            iv_ToTop.setVisibility(View.VISIBLE);
-                            ViewCompat.animate(iv_ToTop)
+                            iv_AddJob.setVisibility(View.VISIBLE);
+                            ViewCompat.animate(iv_AddJob)
                                     .scaleX(1.0f)
                                     .scaleY(1.0f)
                                     .alpha(1.0f)
@@ -234,8 +236,8 @@ public class MyJobFragment extends MySharedFragment {
                         }
 
                     } else if (dy > 0) {
-                        if (iv_ToTop.getVisibility() != View.GONE && !isAnimatingOut) {
-                            ViewCompat.animate(iv_ToTop)
+                        if (iv_AddJob.getVisibility() != View.GONE && !isAnimatingOut) {
+                            ViewCompat.animate(iv_AddJob)
                                     .scaleX(0.0f)
                                     .scaleY(0.0f)
                                     .alpha(0.0f)

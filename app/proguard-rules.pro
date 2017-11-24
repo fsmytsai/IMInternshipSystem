@@ -69,6 +69,7 @@
 
 -keep public class ViewModel.** { *; }
 -keep class com.google.vr.** { *; }
+-keep class com.microsoft.** { *; }
 -keep class com.just.library.** {
     *;
 }
