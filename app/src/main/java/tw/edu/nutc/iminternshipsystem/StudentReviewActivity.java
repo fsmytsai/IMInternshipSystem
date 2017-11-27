@@ -167,7 +167,7 @@ public class StudentReviewActivity extends MySharedActivity implements ISpeechRe
         iv_Record.setImageResource(R.drawable.recording);
         //暫存上一次說完話的文字結果，用於串接
         oldText = et_ReviewContent.getText().toString();
-        canStartRecord = true;
+        canStartRecord = false;
         //設置Context、辨識模式、語言、處理各個事件的類別及PrimaryKey
         this.micClient = SpeechRecognitionServiceFactory.createMicrophoneClient(
                 this,

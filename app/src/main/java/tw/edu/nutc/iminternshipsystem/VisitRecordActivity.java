@@ -23,12 +23,15 @@ import okhttp3.Response;
 public class VisitRecordActivity extends MySharedActivity {
     private static final int EDIT_VISITSTU_CODE = 55;
     private static final int EDIT_VISITCOM_CODE = 66;
+    private static final int CREATE_VISIT_CODE = 77;
     private int SCid;
     private ExistVisitView existVisitView;
     private LinearLayout ll_ExistCompanyVisitTitle;
     private LinearLayout ll_ExistCompanyVisit;
     private LinearLayout ll_ExistStudentVisitTitle;
     private LinearLayout ll_ExistStudentVisit;
+    private TextView tv_ExistCompanyVisitTitle;
+    private TextView tv_ExistStudentVisitTitle;
 
     private int nowPosition = -1;
 
@@ -54,13 +57,14 @@ public class VisitRecordActivity extends MySharedActivity {
         ll_ExistCompanyVisit = (LinearLayout) findViewById(R.id.ll_ExistCompanyVisit);
         ll_ExistStudentVisitTitle = (LinearLayout) findViewById(R.id.ll_ExistStudentVisitTitle);
         ll_ExistStudentVisit = (LinearLayout) findViewById(R.id.ll_ExistStudentVisit);
-
+        tv_ExistCompanyVisitTitle = (TextView) findViewById(R.id.tv_ExistCompanyVisitTitle);
+        tv_ExistStudentVisitTitle = (TextView) findViewById(R.id.tv_ExistStudentVisitTitle);
     }
 
     public void AddVisitRecord(View view) {
         Intent intent = new Intent(this, AddVisitRecordActivity.class);
         intent.putExtra("SCid", SCid);
-        startActivity(intent);
+        startActivityForResult(intent, CREATE_VISIT_CODE);
     }
 
     private void GetExistVisit() {
@@ -89,6 +93,9 @@ public class VisitRecordActivity extends MySharedActivity {
                     public void run() {
                         if (StatusCode == 200) {
                             existVisitView = new Gson().fromJson(ResMsg, ExistVisitView.class);
+                            ll_ExistCompanyVisit.removeAllViews();
+                            ll_ExistStudentVisit.removeAllViews();
+                            tv_ExistCompanyVisitTitle.setText("廠商訪視紀錄 (" + existVisitView.InterviewComList.size() + "/" + existVisitView.interviewNum + ")");
                             for (int i = 0; i < existVisitView.InterviewComList.size(); i++) {
                                 final int Position = i;
                                 LinearLayout ll_ExistVisitBlock = GetExistVisitBlock(
@@ -105,6 +112,7 @@ public class VisitRecordActivity extends MySharedActivity {
                                 });
                                 ll_ExistCompanyVisit.addView(ll_ExistVisitBlock);
                             }
+                            tv_ExistStudentVisitTitle.setText("學生訪視紀錄 (" + existVisitView.InterviewStuList.size() + "/" + existVisitView.interviewNum + ")");
                             for (int i = 0; i < existVisitView.InterviewStuList.size(); i++) {
                                 final int Position = i;
                                 LinearLayout ll_ExistVisitBlock = GetExistVisitBlock(
@@ -196,6 +204,8 @@ public class VisitRecordActivity extends MySharedActivity {
             ExistVisitView.ExistVisitStudent existVisitStudent = new Gson().fromJson(data.getStringExtra("ExistVisitStudent"), ExistVisitView.ExistVisitStudent.class);
             existVisitView.InterviewStuList.set(nowPosition, existVisitStudent);
             nowPosition = -1;
+        } else if (requestCode == CREATE_VISIT_CODE && resultCode == RESULT_OK) {
+            GetExistVisit();
         }
     }
 }

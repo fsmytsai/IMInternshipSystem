@@ -429,6 +429,7 @@ public class VisitStudentFragment extends MySharedFragment {
                     public void run() {
                         if (StatusCode == 200) {
                             SharedService.ShowTextToast("新增成功", addVisitRecordActivity);
+                            addVisitRecordActivity.setResult(addVisitRecordActivity.RESULT_OK);
                             addVisitRecordActivity.finish();
                         } else {
                             SharedService.HandleError(StatusCode, ResMsg, addVisitRecordActivity);

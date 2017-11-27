@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class ExistVisitView {
+    public int interviewNum;
     public List<ExistVisitCompany> InterviewComList;
     public List<ExistVisitStudent> InterviewStuList;
 

@@ -143,6 +143,8 @@ public class EditVisitStudentActivity extends MySharedActivity {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (holder.et_StudentCount.getText().toString().equals(""))
+                            holder.et_StudentCount.setText("0");
                         existVisitStudent.insNum = Integer.parseInt(holder.et_StudentCount.getText().toString());
                     }
 
